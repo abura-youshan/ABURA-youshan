@@ -7,120 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        /* --- 響應式頁尾排版核心設定 --- */
-        .footer-split-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            max-width: 1100px; 
-            width: 90%;
-            /* 桌面版對齊上方文章左側 */
-            margin: 0 auto 0 5%; 
-            text-align: left;
-            padding-bottom: 40px;
-            flex-wrap: wrap; /* 寬度不足時自動換行 */
-            gap: 30px;
-        }
-
-        .footer-left-info {
-            flex: 1;
-            min-width: 280px; /* 確保在收縮時維持最小可讀寬度 */
-        }
-
-        /* 強制 Logo 精確置左 */
-        .footer-left-info .footer-logo {
-            text-align: left !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            display: block;
-        }
-
-        .footer-contact-info-vertical {
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .contact-item {
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            color: #555;
-            word-break: break-all; /* 防止長 Email 在小手機跑版 */
-        }
-
-        .footer-right-join {
-            flex: 1;
-            text-align: right;
-            min-width: 200px;
-            font-family: 'Noto Serif TC', serif;
-        }
-
-        .join-title {
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #2c2c2c;
-            letter-spacing: 3px;
-        }
-
-        .join-item {
-            font-size: 0.95rem;
-            line-height: 2;
-            color: #555;
-            display: block;
-            letter-spacing: 1px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .join-item:hover {
-            color: #8d7b70;
-        }
-
-        /* 響應式版權宣告區塊 */
-        .footer-copyright-wrap {
-            max-width: 1100px;
-            width: 90%;
-            margin: 0 auto 0 5%; 
-            border-top: 1px solid #e0ddd5;
-            padding-top: 25px;
-            text-align: left; 
-        }
-
-        .footer-copyright {
-            color: #999;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        /* --- 手機與平板介面調整 (RWD) --- */
-        @media (max-width: 1024px) {
-            .footer-split-content, .footer-copyright-wrap {
-                margin: 0 auto; /* 在中型螢幕回位置中對齊 */
-                width: 90%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-split-content {
-                flex-direction: column; /* 垂直堆疊 */
-                text-align: left; /* 依照您的要求維持置左 */
-                gap: 50px;
-            }
-            .footer-right-join {
-                text-align: left; /* 手機版改為置左，方便閱讀 */
-                padding-bottom: 20px;
-            }
-            .footer-contact-info-vertical {
-                align-items: flex-start;
-            }
-            .footer-social {
-                justify-content: flex-start !important;
-            }
-        }
-    </style>
+    
 </head>
 <body class="destination-detail-page">
 
@@ -160,7 +47,7 @@
         <div class="content-wrap" style="max-width: 1100px; width: 100%;">
             <div class="about-row">
                 <div class="about-image-box">
-                    <img src="photo/游山丸水外觀湖1.jpg" class="img-shadow-right" alt="宜蘭ABURA游山">
+                    <img src="photo/游山丸水外觀湖1.webp" class="img-shadow-right" alt="宜蘭ABURA游山">
                 </div>
                 <div class="about-text-box">
                     <span class="tag">Brand Origin</span>
@@ -180,13 +67,13 @@
                     </p>
                 </div>
                 <div class="about-image-box">
-                    <img src="photo/海.jpg" class="img-shadow-left" alt="宜蘭ABURA游山海邊住宿">
+                    <img src="photo/海.webp" loading="lazy" class="img-shadow-left" alt="宜蘭ABURA游山海邊住宿">
                 </div>
             </div>
 
             <div class="about-row">
                 <div class="about-image-box">
-                    <img src="photo/游泳池.JPG" class="img-shadow-right" alt="宜蘭ABURA游山溫泉住宿">
+                    <img src="photo/游泳池.webp" loading="lazy" class="img-shadow-right" alt="宜蘭ABURA游山溫泉住宿">
                 </div>
                 <div class="about-text-box">
                     <span class="tag">Local Soul</span>
@@ -232,3 +119,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

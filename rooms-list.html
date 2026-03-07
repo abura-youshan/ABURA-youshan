@@ -7,88 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        /* 頁面專屬排版修正 - 已移除漢堡選單重複樣式 */
-        .rooms-header-section { 
-            min-height: 45vh; 
-            background-color: #8d7b70; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding: 120px 0 60px 0; 
-            color: #f6f5f0; 
-        }
-        
-        .added-title { 
-            font-size: 2.2rem; 
-            font-weight: 300; 
-            margin-top: 60px; 
-            margin-bottom: 40px; 
-            color: #2c2c2c; 
-            letter-spacing: 2px; 
-            scroll-margin-top: 150px; 
-        }
-
-        /* 網格佈局系統 - 恢復三欄與二欄排版 */
-        .room-display-grid { 
-            width: 90%; 
-            margin: 0 auto 40px auto; 
-            display: grid; 
-            gap: 15px; 
-        }
-
-        @media (min-width: 769px) {
-            .room-grid-three { grid-template-columns: repeat(3, 1fr); }
-            .room-grid-two { grid-template-columns: repeat(2, 1fr); margin-bottom: 100px; }
-        }
-
-        /* 房型卡片細節 */
-        .room-card { background: #fff; border: 1px solid #eee; padding-bottom: 35px; text-align: left; }
-        .room-photo-slider { position: relative; width: 100%; aspect-ratio: 3.5 / 4; overflow: hidden; margin-bottom: 25px; background: #eee; }
-        .photo-track { display: flex; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); height: 100%; width: 100%; }
-        .photo-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; opacity: 0; transition: 0.3s; }
-        .room-card:hover .slider-btn { opacity: 1; background: rgba(0,0,0,0.6); }
-        .prev-btn { left: 15px; } 
-        .next-btn { right: 15px; }
-        .room-card h3 { padding: 0 25px; font-size: 1.5rem; font-weight: 400; margin-bottom: 15px; color: #333; }
-        .room-amenities { list-style: none; padding: 0 25px; margin: 0; }
-        .room-amenities-title { font-weight: 500; margin-bottom: 10px; color: #888; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .room-amenities li { font-size: 0.9rem; color: #666; margin-bottom: 5px; position: relative; padding-left: 15px; }
-        .room-amenities li::before { content: "•"; position: absolute; left: 0; color: #aaa; }
     
-        /* 大相簿輪播專屬樣式 - 自適應優化 (游山與丸水) */
-        .gallery-slider { 
-            width: 90%; 
-            margin: 0 auto; 
-            overflow: hidden; 
-            position: relative; 
-            aspect-ratio: 16 / 9; 
-        }
-        .gallery-container { 
-            display: flex; 
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
-            height: 100%; 
-        }
-        .gallery-item { 
-            flex: 0 0 100%; 
-            height: 100%; 
-        }
-        .gallery-item img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-        }
-
-        /* 手機版 RWD 僅保留必要的頁面組件調整 */
-        @media (max-width: 768px) {
-            .gallery-slider { 
-                width: 100%; 
-                aspect-ratio: 4 / 3; 
-            }
-        }
-    </style>
 </head>
 <body class="destination-detail-page">
 
@@ -138,11 +57,11 @@
     <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
         <div class="gallery-slider">
             <div id="galleryContainer" class="gallery-container">
-                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳1.jpg" alt="宜蘭住宿"></div>
-                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳2.jpg" alt="宜蘭住宿客廳"></div>
-                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳3.jpg" alt="宜蘭住宿"></div>
-                <div class="gallery-item" data-title="游山客廳廚房"><img src="photo/游山客廳4.jpg" alt="宜蘭住宿"></div>
-                <div class="gallery-item" data-title="游山客廳自助吧"><img src="photo/游山客廳5.JPG" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳1.webp"  alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳2.webp" loading="lazy" alt="宜蘭住宿客廳"></div>
+                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳3.webp" loading="lazy" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳廚房"><img src="photo/游山客廳4.webp" loading="lazy" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳自助吧"><img src="photo/游山客廳5.webp" loading="lazy" alt="宜蘭住宿"></div>
             </div>
         </div>
         
@@ -164,7 +83,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山201-1.JPG"><img src="photo/游山201-2.JPG"><img src="photo/游山201-3.JPG"><img src="photo/游山201-4.JPG"><img src="photo/游山201-5.JPG"><img src="photo/游山201-6.JPG"><img src="photo/游山201-7.jpg"><img src="photo/游山201-8.JPG">
+                    <img src="photo/游山201-1.webp" loading="lazy"><img src="photo/游山201-2.webp" loading="lazy"><img src="photo/游山201-3.webp" loading="lazy"><img src="photo/游山201-4.webp" loading="lazy"><img src="photo/游山201-5.webp" loading="lazy"><img src="photo/游山201-6.webp" loading="lazy"><img src="photo/游山201-7.webp" loading="lazy"><img src="photo/游山201-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -175,7 +94,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山202-1.JPG"><img src="photo/游山202-2.JPG"><img src="photo/游山202-3.JPG"><img src="photo/游山202-4.JPG"><img src="photo/游山202-5.JPG"><img src="photo/游山202-6.JPG"><img src="photo/游山202-7.JPG"><img src="photo/游山202-8.JPG">
+                    <img src="photo/游山202-1.webp" loading="lazy"><img src="photo/游山202-2.webp" loading="lazy"><img src="photo/游山202-3.webp" loading="lazy"><img src="photo/游山202-4.webp" loading="lazy"><img src="photo/游山202-5.webp" loading="lazy"><img src="photo/游山202-6.webp" loading="lazy"><img src="photo/游山202-7.webp" loading="lazy" ><img src="photo/游山202-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -186,7 +105,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山203-1.jpg"><img src="photo/游山203-2.jpg"><img src="photo/游山203-3.JPG"><img src="photo/游山203-4.jpg"><img src="photo/游山203-5.jpg"><img src="photo/游山203-6.JPG"><img src="photo/游山203-7.jpg"><img src="photo/游山203-8.jpg">
+                    <img src="photo/游山203-1.webp" loading="lazy"><img src="photo/游山203-2.webp" loading="lazy"><img src="photo/游山203-3.webp" loading="lazy"><img src="photo/游山203-4.webp" loading="lazy"><img src="photo/游山203-5.webp" loading="lazy"><img src="photo/游山203-6.webp" loading="lazy"><img src="photo/游山203-7.webp" loading="lazy"><img src="photo/游山203-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -200,7 +119,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山205-1.jpg"><img src="photo/游山205-2.jpg"><img src="photo/游山205-3.jpg"><img src="photo/游山205-4.jpg"><img src="photo/游山205-5.jpg"><img src="photo/游山205-6.jpg">
+                    <img src="photo/游山205-1.webp" loading="lazy"><img src="photo/游山205-2.webp" loading="lazy"><img src="photo/游山205-3.webp" loading="lazy"><img src="photo/游山205-4.webp" loading="lazy"><img src="photo/游山205-5.webp" loading="lazy"><img src="photo/游山205-6.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -211,7 +130,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山206-1.JPG"><img src="photo/游山206-2.JPG"><img src="photo/游山206-3.jpg"><img src="photo/游山206-4.JPG"><img src="photo/游山206-5.jpg"><img src="photo/游山206-6.jpg"><img src="photo/游山206-7.jpg"><img src="photo/游山206-8.jpg">
+                    <img src="photo/游山206-1.webp" loading="lazy"><img src="photo/游山206-2.webp" loading="lazy"><img src="photo/游山206-3.webp" loading="lazy"><img src="photo/游山206-4.webp" loading="lazy"><img src="photo/游山206-5.webp" loading="lazy"><img src="photo/游山206-6.webp" loading="lazy"><img src="photo/游山206-7.webp" loading="lazy"><img src="photo/游山206-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -222,7 +141,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山301-1.JPG"><img src="photo/游山301-2.jpg"><img src="photo/游山301-3.jpg"><img src="photo/游山301-4.jpg"><img src="photo/游山301-5.JPG"><img src="photo/游山301-7.jpg"><img src="photo/游山301-6.JPG"><img src="photo/游山301-8.JPG">
+                    <img src="photo/游山301-1.webp" loading="lazy"><img src="photo/游山301-2.webp" loading="lazy"><img src="photo/游山301-3.webp" loading="lazy"><img src="photo/游山301-4.webp" loading="lazy"><img src="photo/游山301-5.webp" loading="lazy"><img src="photo/游山301-7.webp" loading="lazy"><img src="photo/游山301-6.webp" loading="lazy"><img src="photo/游山301-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -236,7 +155,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山302-1.jpg"><img src="photo/游山302-2.jpg"><img src="photo/游山302-3.JPG"><img src="photo/游山302-5.jpg"><img src="photo/游山302-6.jpg"><img src="photo/游山302-7.jpg"><img src="photo/游山302-4.JPG"><img src="photo/游山302-8.jpg">
+                    <img src="photo/游山302-1.webp" loading="lazy"><img src="photo/游山302-2.webp" loading="lazy"><img src="photo/游山302-3.webp" loading="lazy"><img src="photo/游山302-5.webp" loading="lazy"><img src="photo/游山302-6.webp" loading="lazy"><img src="photo/游山302-7.webp" loading="lazy"><img src="photo/游山302-4.webp" loading="lazy"><img src="photo/游山302-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -247,7 +166,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/游山303-1.jpg"><img src="photo/游山303-2.jpg"><img src="photo/游山303-3.jpg"><img src="photo/游山303-4.jpg"><img src="photo/游山303-5.JPG"><img src="photo/游山303-6.JPG"><img src="photo/游山303-7.jpg"><img src="photo/游山303-9.jpg">
+                    <img src="photo/游山303-1.webp" loading="lazy"><img src="photo/游山303-2.webp" loading="lazy"><img src="photo/游山303-3.webp" loading="lazy"><img src="photo/游山303-4.webp" loading="lazy"><img src="photo/游山303-5.webp" loading="lazy"><img src="photo/游山303-6.webp" loading="lazy"><img src="photo/游山303-7.webp" loading="lazy"><img src="photo/游山303-9.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -261,12 +180,12 @@
     <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
         <div class="gallery-slider">
             <div id="galleryContainer2" class="gallery-container">
-                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳.jpg" alt="宜蘭民宿"></div>
-                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳1.jpg" alt="宜蘭住宿"></div>
-                <div class="gallery-item" data-title="丸水包棟廚房"><img src="photo/丸水客廳2.jpg" alt="宜蘭民宿"></div>
-                <div class="gallery-item" data-title="丸水包棟廚房"><img src="photo/丸水客廳3.jpg" alt="宜蘭住宿"></div>
-                <div class="gallery-item" data-title="丸水包棟兒童遊戲區"><img src="photo/丸水客廳4.jpg" alt="宜蘭住宿"></div>
-                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳5.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳.webp" loading="lazy" alt="宜蘭民宿"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳1.webp" loading="lazy" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟廚房"><img src="photo/丸水客廳2.webp" loading="lazy" alt="宜蘭民宿"></div>
+                <div class="gallery-item" data-title="丸水包棟廚房"><img src="photo/丸水客廳3.webp" loading="lazy" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟兒童遊戲區"><img src="photo/丸水客廳4.webp" loading="lazy" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳5.webp" loading="lazy" alt="宜蘭住宿"></div>
             </div>
         </div>
         
@@ -288,7 +207,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水101-1.jpg"><img src="photo/丸水101-2.jpg"><img src="photo/丸水101-3.jpg"><img src="photo/丸水101-4.jpg"><img src="photo/丸水101-5.jpg"><img src="photo/丸水101-6.jpg"><img src="photo/丸水101-7.jpg">
+                    <img src="photo/丸水101-1.webp" loading="lazy"><img src="photo/丸水101-2.webp" loading="lazy"><img src="photo/丸水101-3.webp" loading="lazy"><img src="photo/丸水101-4.webp" loading="lazy"><img src="photo/丸水101-5.webp" loading="lazy"><img src="photo/丸水101-6.webp" loading="lazy"><img src="photo/丸水101-7.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -299,7 +218,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水201-1.jpg"><img src="photo/丸水201-2.jpg"><img src="photo/丸水201-3.jpg"><img src="photo/丸水201-4.jpg"><img src="photo/丸水201-5.jpg"><img src="photo/丸水201-7.jpg"><img src="photo/丸水201-8.JPG">
+                    <img src="photo/丸水201-1.webp" loading="lazy"><img src="photo/丸水201-2.webp" loading="lazy"><img src="photo/丸水201-3.webp" loading="lazy"><img src="photo/丸水201-4.webp" loading="lazy"><img src="photo/丸水201-5.webp" loading="lazy"><img src="photo/丸水201-7.webp" loading="lazy"><img src="photo/丸水201-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -310,7 +229,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水202-1.jpg"><img src="photo/丸水202-2.jpg"><img src="photo/丸水202-3.jpg"><img src="photo/丸水202-4.jpg"><img src="photo/丸水202-5.jpg"><img src="photo/丸水202-6.jpg">
+                    <img src="photo/丸水202-1.webp" loading="lazy"><img src="photo/丸水202-2.webp" loading="lazy"><img src="photo/丸水202-3.webp" loading="lazy"><img src="photo/丸水202-4.webp" loading="lazy"><img src="photo/丸水202-5.webp" loading="lazy"><img src="photo/丸水202-6.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -324,7 +243,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水203-1.JPG"><img src="photo/丸水203-2.JPG"><img src="photo/丸水203-3.JPG"><img src="photo/丸水203-4.jpg"><img src="photo/丸水203-5.jpg"><img src="photo/丸水203-6.JPG">
+                    <img src="photo/丸水203-1.webp" loading="lazy"><img src="photo/丸水203-2.webp" loading="lazy"><img src="photo/丸水203-3.webp"loading="lazy"><img src="photo/丸水203-4.webp" loading="lazy"><img src="photo/丸水203-5.webp" loading="lazy"><img src="photo/丸水203-6.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -335,7 +254,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水205-1.jpg"><img src="photo/丸水205-2.JPG"><img src="photo/丸水205-3.jpg"><img src="photo/丸水205-4.jpg"><img src="photo/丸水205-5.jpg"><img src="photo/丸水205-6.jpg"><img src="photo/丸水205-7.jpg">
+                    <img src="photo/丸水205-1.webp" loading="lazy"><img src="photo/丸水205-2.webp" loading="lazy"><img src="photo/丸水205-3.webp" loading="lazy"><img src="photo/丸水205-4.webp" loading="lazy"><img src="photo/丸水205-5.webp" loading="lazy"><img src="photo/丸水205-6.webp" loading="lazy"><img src="photo/丸水205-7.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -346,7 +265,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水206-1.jpg"><img src="photo/丸水206-2.jpg"><img src="photo/丸水206-3.jpg"><img src="photo/丸水206-4.jpg"><img src="photo/丸水206-5-2.jpg"><img src="photo/丸水206-6.jpg"><img src="photo/丸水206-7.jpg">
+                    <img src="photo/丸水206-1.webp" loading="lazy"><img src="photo/丸水206-2.webp" loading="lazy"><img src="photo/丸水206-3.webp" loading="lazy"><img src="photo/丸水206-4.webp" loading="lazy"><img src="photo/丸水206-5-2.webp" loading="lazy"><img src="photo/丸水206-6.webp" loading="lazy"><img src="photo/丸水206-7.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -360,7 +279,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水301-1.jpg"><img src="photo/丸水301-2.jpg"><img src="photo/丸水301-3.jpg"><img src="photo/丸水301-4.jpg"><img src="photo/丸水301-5.jpg"><img src="photo/丸水301-6.jpg"><img src="photo/丸水301-7.jpg"><img src="photo/丸水301-8.jpg">
+                    <img src="photo/丸水301-1.webp" loading="lazy"><img src="photo/丸水301-2.webp" loading="lazy"><img src="photo/丸水301-3.webp" loading="lazy"><img src="photo/丸水301-4.webp" loading="lazy"><img src="photo/丸水301-5.webp" loading="lazy"><img src="photo/丸水301-6.webp" loading="lazy"><img src="photo/丸水301-7.webp" loading="lazy"><img src="photo/丸水301-8.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -371,7 +290,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水302-1.jpg"><img src="photo/丸水302-2.jpg"><img src="photo/丸水302-3.jpg"><img src="photo/丸水302-5.jpg"><img src="photo/丸水302-6.jpg"><img src="photo/丸水302-7.jpg">
+                    <img src="photo/丸水302-1.webp"loading="lazy"><img src="photo/丸水302-2.webp" loading="lazy"><img src="photo/丸水302-3.webp" loading="lazy"><img src="photo/丸水302-5.webp" loading="lazy"><img src="photo/丸水302-6.webp" loading="lazy"><img src="photo/丸水302-7.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -382,7 +301,7 @@
             <div class="room-photo-slider">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="photo-track">
-                    <img src="photo/丸水303-1.jpg"><img src="photo/丸水303-2.jpg"><img src="photo/丸水303-3.JPG"><img src="photo/丸水303-4.jpg"><img src="photo/丸水303-5.jpg"><img src="photo/丸水303-7.jpg"><img src="photo/丸水303-8.jpg"><img src="photo/丸水303-6.jpg"><img src="photo/丸水303-9.jpg">
+                    <img src="photo/丸水303-1.webp" loading="lazy"><img src="photo/丸水303-2.webp" loading="lazy"><img src="photo/丸水303-3.webp" loading="lazy"><img src="photo/丸水303-4.webp" loading="lazy"><img src="photo/丸水303-5.webp" loading="lazy"><img src="photo/丸水303-7.webp" loading="lazy"><img src="photo/丸水303-8.webp" loading="lazy"><img src="photo/丸水303-6.webp" loading="lazy"><img src="photo/丸水303-9.webp" loading="lazy">
                 </div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -420,3 +339,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

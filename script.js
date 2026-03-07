@@ -42,8 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 4. 通用大圖相簿 Slider (支援多組：Wander/Gulu/Hione/客房列表)
-    // 我們改用 function 處理，這樣傳入不同的 ID 就能各別運作
+    // 4. 通用大圖相簿 Slider
     function initBigGallery(containerId, prevId, nextId, titleId, currPageId, totalPageId) {
         const gallery = document.getElementById(containerId);
         const nextBtn = document.getElementById(nextId);
@@ -76,13 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 執行第一組相簿 (全站通用)
     initBigGallery('galleryContainer', 'prevBtn', 'nextBtn', 'galleryTitle', 'currPage', 'totalPage');
-    
-    // 執行第二組相簿 (客房頁面：丸水棟專用)
     initBigGallery('galleryContainer2', 'prevBtn2', 'nextBtn2', 'galleryTitle2', 'currPage2', 'totalPage2');
 
-    // 5. 房型列表小輪播 (客房列表頁面)
+    // 5. 房型列表小輪播
     document.querySelectorAll('.room-card').forEach(card => {
         const track = card.querySelector('.photo-track');
         const imgs = card.querySelectorAll('.photo-track img');
@@ -103,23 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     track.style.transform = `translateX(${-c * 100}%)`; 
                 };
             }
-        } else if (track) {
-            if(n) n.style.display = 'none';
-            if(p) p.style.display = 'none';
         }
     });
-});
-// 手機版目的地選單：點擊展開住宿房型連結
+
+    // 手機版目的地選單展開
     const submenuRows = document.querySelectorAll('.submenu-row');
     submenuRows.forEach(row => {
         row.addEventListener('click', function(e) {
-            // 只有在手機尺寸下才觸發
             if (window.innerWidth <= 768) {
-                // 如果點擊的是主連結，阻止一下跳轉以便觀察展開
-                // e.preventDefault(); 
                 this.classList.toggle('show-room');
-                
-                // 自動捲動讓展開的連結被看見
                 if (this.classList.contains('show-room')) {
                     setTimeout(() => {
                         this.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -128,3 +116,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});

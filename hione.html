@@ -6,142 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-    /* --- 專屬修正：確保 Logo 在移除預訂按鈕後依然絕對置中 --- */
-    .navbar {
-        position: fixed;
-        display: flex;
-        justify-content: center; 
-        align-items: center;
-    }
-    .logo {
-        position: absolute !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        margin: 0 !important;
-    }
-    .menu-toggle {
-        position: absolute;
-        left: 60px; 
-    }
-
-    /* 東澳未來設施專屬樣式 - 統一字體為 Noto Serif TC */
-    .dongao-future-section {
-        padding: 80px 20px;
-        background-color: #ffffff;
-        font-family: 'Noto Serif TC', serif !important;
-    }
-
-    .da-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .da-header {
-        text-align: center;
-        margin-bottom: 60px;
-    }
-
-    .da-label {
-        display: block;
-        font-size: 0.75rem;
-        color: #bfa37e; 
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        font-family: 'Noto Serif TC', serif;
-    }
-
-    .da-main-title {
-        font-size: 2rem;
-        font-weight: 500;
-        color: #1a1a1a;
-        margin-bottom: 20px;
-        font-family: 'Noto Serif TC', serif;
-    }
-
-    .da-divider {
-        width: 40px;
-        height: 1px;
-        background-color: #bfa37e;
-        margin: 0 auto;
-    }
-
-    .da-facility-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-    }
-
-    .da-card {
-        border: 1px solid #eeeeee;
-        padding: 40px;
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: all 0.3s ease;
-        min-height: 300px;
-    }
-
-    .da-card:hover {
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-        border-color: #bfa37e;
-        transform: translateY(-5px);
-    }
-
-    .da-tag {
-        font-size: 0.7rem;
-        background-color: #f8f8f8;
-        color: #888;
-        padding: 3px 10px;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-        display: inline-block;
-        font-family: 'Noto Serif TC', serif;
-    }
-
-    .da-item-name {
-        font-size: 1.4rem;
-        font-weight: 500;
-        margin-bottom: 15px;
-        color: #222;
-        font-family: 'Noto Serif TC', serif;
-    }
-
-    .da-description {
-        font-size: 0.95rem;
-        color: #666;
-        line-height: 1.8;
-        text-align: justify;
-        font-family: 'Noto Serif TC', serif;
-    }
-
-    /* Coming Soon 響應式 */
-    .coming-soon-wrapper {
-        width: 80%;
-        margin: 80px auto 0 auto;
-        padding: 100px 0;
-        border-top: 1px solid #eee;
-        text-align: center;
-    }
-
-    .coming-soon-text {
-        font-family: 'Playfair Display', serif;
-        font-style: italic;
-        color: #13406e;
-        opacity: 0.8;
-        font-size: clamp(2.5rem, 6vw, 5.5rem);
-        letter-spacing: clamp(4px, 1.5vw, 15px);
-        white-space: nowrap;
-    }
-
-    @media (max-width: 768px) {
-        .menu-toggle { left: 20px; }
-        .coming-soon-wrapper { width: 90%; padding: 60px 0; }
-        .da-description { text-align: center; }
-    }
-    </style>
+    
 </head>
 <body class="destination-detail-page">
     <nav class="navbar destination-nav" id="main-nav">
@@ -174,7 +39,7 @@
         </ul>
     </nav>
 
-    <section><img src="photo/東澳俯視圖生成.jpg" style="width:100%; display:block;" alt="宜蘭東澳海邊住宿"></section>
+    <section><img src="photo/東澳俯視圖生成.webp" style="width:100%; display:block;" alt="宜蘭東澳海邊住宿"></section>
 
     <article class="detail-content" style="background-color: #4a5a6a; color: #f6f5f0; padding: 100px 20px;">
         <div class="content-wrap">
@@ -246,7 +111,7 @@
             </div>
 
             <div class="coming-soon-wrapper">
-                <p class="coming-soon-text">Coming Soon ...</p>
+                <p class="hione-coming-soon-text">Coming Soon ...</p>
             </div>
         </div>
     </section>
@@ -274,3 +139,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

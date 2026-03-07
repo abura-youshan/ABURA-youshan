@@ -7,49 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-    /* --- 精確區塊間距控制 (不互相干擾版) --- */
     
-    /* 1. 客房區塊：文字與下方相簿的間距 */
-    #room-section { padding-bottom: 20px !important; }
-    #room-section .section-title { margin-bottom: 5px !important; }
-    #room-section .section-desc { margin-bottom: 5px !important; }
-
-    /* 2. 餐飲與設施區塊：還原並微調網格頂部距離 */
-    #dining-section .section-title, #facility-section .section-title { margin-bottom: 5px !important; }
-    #dining-section .section-desc, #facility-section .section-desc { margin-bottom: 10px !important; }
-    /* 針對餐飲與設施的網格容器，保持適度距離 (30px) */
-    #dining-section .room-display-grid, 
-    #dining-section div[style*="grid"],
-    #facility-section div[style*="grid"] { 
-        margin-top: 30px !important; 
-    }
-
-    /* 3. 須知區塊：專屬處理文字與圖片 (目標是貼近) */
-    #notice-section .section-title { margin-bottom: 5px !important; }
-    #notice-section p.section-desc { 
-        margin-bottom: 5px !important; 
-        padding-bottom: 10px !important; 
-    }
-    /* 僅針對須知區塊內緊接在文字後的這張特定圖片進行壓迫 */
-    #notice-section p.section-desc + img { 
-        margin-top: 10px !important; 
-        display: block !important;
-    }
-
-    /* 4. 交通區塊：保持與上方「須知照片」的 100px 距離 */
-    #map-section { 
-        margin-top: 100px !important; 
-        display: block !important;
-        clear: both;
-    }
-    #map-section .section-title { margin-bottom: 5px !important; }
-    #map-section .section-desc { margin-bottom: 15px !important; }
-    #map-section iframe { margin-top: 10px !important; }
-
-    /* 通用 Tag 距離標題 */
-    .detail-content .tag { margin-bottom: 5px !important; }
-    </style>
 </head>
 <body class="destination-detail-page">
     <nav class="navbar destination-nav" id="main-nav">
@@ -94,7 +52,7 @@
     </nav>
 
     <section style="width: 100%;">
-        <img src="photo/游山丸水外觀湖1.jpg" style="width:100%; display:block;" alt="宜蘭住宿游山丸水">
+        <img src="photo/游山丸水外觀湖1.webp"  style="width:100%; display:block;" alt="宜蘭住宿游山丸水">
     </section>
 
     <article class="detail-content" style="background-color: #8d7b70; color: #f6f5f0; padding: 100px 20px;">
@@ -126,15 +84,15 @@
     <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
         <div class="gallery-slider">
             <div id="galleryContainer" class="gallery-container">
-                <div class="gallery-item" data-title="201"><img src="photo/游山201.JPG" alt="宜蘭游山丸水"></div>
-                <div class="gallery-item" data-title="202"><img src="photo/游山202.JPG" alt="游山丸水雙人房"></div>
-                <div class="gallery-item" data-title="203"><img src="photo/游山203.jpg" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="205"><img src="photo/游山205.jpg" alt="游山丸水雙人房"></div>
-                <div class="gallery-item" data-title="206"><img src="photo/游山206.JPG" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="301"><img src="photo/游山301.jpg" alt="游山丸水雙人房"></div>
-                <div class="gallery-item" data-title="302"><img src="photo/游山302.jpg" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="303"><img src="photo/游山303.jpg" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水棟客廳.jpg" alt="Wanshui Building"></div>
+                <div class="gallery-item" data-title="201"><img src="photo/游山201.webp" loading="lazy" alt="宜蘭游山丸水"></div>
+                <div class="gallery-item" data-title="202"><img src="photo/游山202.webp" loading="lazy" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="203"><img src="photo/游山203.webp" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="205"><img src="photo/游山205.webp" loading="lazy" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="206"><img src="photo/游山206.webp" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="301"><img src="photo/游山301.webp" loading="lazy" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="302"><img src="photo/游山302.webp" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="303"><img src="photo/游山303.webp" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水棟客廳.webp" loading="lazy" alt="Wanshui Building"></div>
             </div>
         </div>
         <div style="display: flex; justify-content: space-between; width: 80%; margin: 25px auto; align-items: center;">
@@ -157,13 +115,13 @@
             <p class="section-desc">提供中式九宮格與西式餐盤。</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
                 <div>
-                    <img src="photo/早餐中式.jpg" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水早餐">
+                    <img src="photo/早餐中式.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水早餐">
                     <span class="tag">中式</span>
                     <h3 class="section-title" style="font-size: 1.8rem;">清粥九宮格</h3>
                     <p class="section-desc">精選在地食材製作的九道精緻小菜，搭配溫潤清粥，開啟充滿活力的早晨。</p>
                 </div>
                 <div>
-                    <img src="photo/早餐西式.jpg" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水早餐">
+                    <img src="photo/早餐西式.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水早餐">
                     <span class="tag">西式</span>
                     <h3 class="section-title" style="font-size: 1.8rem;">雞腿排餐盤</h3>
                     <p class="section-desc">鮮嫩多汁的煎烤雞腿排，搭配新鮮沙拉與手作麵包，提供豐富的營養與美味。</p>
@@ -179,19 +137,19 @@
             <p class="section-desc">游泳池、戲水池、划船</p>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 60px;">
                 <div>
-                    <img src="photo/游泳池.JPG" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游泳池">
+                    <img src="photo/游泳池.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游泳池">
                     <span class="tag">戶外設施</span>
                     <h3 class="section-title" style="font-size: 1.6rem;">游泳池</h3>
                     <p class="section-desc">在波光粼粼中暢游，享受大自然與天然湧泉水的完美結合。</p>
                 </div>
                 <div>
-                    <img src="photo/戲水池.JPG" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="戲水池">
+                    <img src="photo/戲水池.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="戲水池">
                     <span class="tag">戶外設施</span>
                     <h3 class="section-title" style="font-size: 1.6rem;">戲水池</h3>
                     <p class="section-desc">安全的淺水區域，適合與家人朋友一同嬉戲歡笑。</p>
                 </div>
                 <div>
-                    <img src="photo/划船區.JPG" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="划船區">
+                    <img src="photo/划船區.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="划船區">
                     <span class="tag">水上活動</span>
                     <h3 class="section-title" style="font-size: 1.6rem;">划船區</h3>
                     <p class="section-desc">在平靜的湖面上划槳，感受微風吹拂與悠閒時光。</p>
@@ -205,7 +163,7 @@
             <span class="tag">須知</span>
             <h2 class="section-title">入住須知</h2>
             <p class="section-desc">入住時間為下午 3:00，退房時間為上午 11:00。全館禁菸並謝絕寵物入住。</p>
-            <img src="photo/須知.jpg" style="width: 80%; height: auto; display: block; margin: 80px 0;" alt="Facility Notice Image">
+            <img src="photo/須知.webp" loading="lazy" style="width: 80%; height: auto; display: block; margin: 80px 0;" alt="Facility Notice Image">
             
             <div id="map-section" style="width: 100%;">
                 <span class="tag">GOOGLE MAP</span>
@@ -259,3 +217,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
