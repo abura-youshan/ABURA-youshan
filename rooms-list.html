@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客房列表 | ABURA WANDER</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* 頁面專屬排版修正 - 已移除漢堡選單重複樣式 */
+        .rooms-header-section { 
+            min-height: 45vh; 
+            background-color: #8d7b70; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 120px 0 60px 0; 
+            color: #f6f5f0; 
+        }
+        
+        .added-title { 
+            font-size: 2.2rem; 
+            font-weight: 300; 
+            margin-top: 60px; 
+            margin-bottom: 40px; 
+            color: #2c2c2c; 
+            letter-spacing: 2px; 
+            scroll-margin-top: 150px; 
+        }
+
+        /* 網格佈局系統 - 恢復三欄與二欄排版 */
+        .room-display-grid { 
+            width: 90%; 
+            margin: 0 auto 40px auto; 
+            display: grid; 
+            gap: 15px; 
+        }
+
+        @media (min-width: 769px) {
+            .room-grid-three { grid-template-columns: repeat(3, 1fr); }
+            .room-grid-two { grid-template-columns: repeat(2, 1fr); margin-bottom: 100px; }
+        }
+
+        /* 房型卡片細節 */
+        .room-card { background: #fff; border: 1px solid #eee; padding-bottom: 35px; text-align: left; }
+        .room-photo-slider { position: relative; width: 100%; aspect-ratio: 3.5 / 4; overflow: hidden; margin-bottom: 25px; background: #eee; }
+        .photo-track { display: flex; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); height: 100%; width: 100%; }
+        .photo-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; opacity: 0; transition: 0.3s; }
+        .room-card:hover .slider-btn { opacity: 1; background: rgba(0,0,0,0.6); }
+        .prev-btn { left: 15px; } 
+        .next-btn { right: 15px; }
+        .room-card h3 { padding: 0 25px; font-size: 1.5rem; font-weight: 400; margin-bottom: 15px; color: #333; }
+        .room-amenities { list-style: none; padding: 0 25px; margin: 0; }
+        .room-amenities-title { font-weight: 500; margin-bottom: 10px; color: #888; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .room-amenities li { font-size: 0.9rem; color: #666; margin-bottom: 5px; position: relative; padding-left: 15px; }
+        .room-amenities li::before { content: "•"; position: absolute; left: 0; color: #aaa; }
+    
+        /* 大相簿輪播專屬樣式 - 自適應優化 (游山與丸水) */
+        .gallery-slider { 
+            width: 90%; 
+            margin: 0 auto; 
+            overflow: hidden; 
+            position: relative; 
+            aspect-ratio: 16 / 9; 
+        }
+        .gallery-container { 
+            display: flex; 
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+            height: 100%; 
+        }
+        .gallery-item { 
+            flex: 0 0 100%; 
+            height: 100%; 
+        }
+        .gallery-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+        }
+
+        /* 手機版 RWD 僅保留必要的頁面組件調整 */
+        @media (max-width: 768px) {
+            .gallery-slider { 
+                width: 100%; 
+                aspect-ratio: 4 / 3; 
+            }
+        }
+    </style>
+</head>
+<body class="destination-detail-page">
+
+    <nav class="navbar destination-nav" id="main-nav">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+        <div class="reserve-link"><a href="https://www.booking-owlnest.com/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4?lang=zh_TW&adult=1&child=0&infant=0" target="_blank" class="btn-reserve">預訂</a></div>
+    </nav>
+
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li>
+                <a href="javascript:void(0)" id="toggle-destinations">目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i></a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <nav class="sub-nav" id="sticky-sub-nav">
+        <ul>
+            <li><a href="wander.html">游山丸水 〉</a></li>
+            <li><a href="#youshan-section" style="color: #333; font-weight: 500;">游山棟</a></li>
+            <li><a href="#wanshui-section" style="color: #333; font-weight: 500;">丸水棟</a></li>
+        </ul>
+    </nav>
+
+    <header class="rooms-header-section">
+        <div class="rooms-info-content" style="width: 90%; margin: 0 auto;">
+            <p style="font-size: 0.85rem; opacity: 0.8; letter-spacing: 2px; margin-bottom: 15px;">住宿</p>
+            <h2 style="font-size: 2.8rem; font-weight: 300; margin-bottom: 35px; letter-spacing: 2px;">客房</h2>
+            <p style="font-size: 1rem; line-height: 1.8; opacity: 0.9; max-width: 800px;">「游山」與「丸水」，是我們對山水生活的兩套註解。<br>每一間房型都融入了現代設計與自然材料，提供變頻冷暖空調、免治馬桶等高品質設施，<br>確保四季皆能享有最舒適的體感溫度。</p>
+        </div>
+    </header>
+
+    <div class="rooms-info-content" style="width: 90%; margin: 0 auto;"><h2 class="added-title" id="youshan-section">游山棟</h2></div>
+    
+    <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
+        <div class="gallery-slider">
+            <div id="galleryContainer" class="gallery-container">
+                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳1.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳2.jpg" alt="宜蘭住宿客廳"></div>
+                <div class="gallery-item" data-title="游山客廳"><img src="photo/游山客廳3.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳廚房"><img src="photo/游山客廳4.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="游山客廳自助吧"><img src="photo/游山客廳5.JPG" alt="宜蘭住宿"></div>
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; width: 90%; margin: 25px auto; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span id="galleryTitle" style="color: #888; font-size: 0.9rem; letter-spacing: 2px;">游山201</span>
+                <i class="fa-solid fa-arrow-right-long" style="color: #333;"></i>
+            </div>
+            <div>
+                <span id="prevBtn" style="cursor: pointer; padding: 10px;"><i class="fa-solid fa-chevron-left"></i></span>
+                <span style="color: #888; letter-spacing: 2px;"><span id="currPage">1</span> / <span id="totalPage">5</span></span>
+                <span id="nextBtn" style="cursor: pointer; padding: 10px;"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <main class="room-display-grid room-grid-three">
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山201-1.JPG"><img src="photo/游山201-2.JPG"><img src="photo/游山201-3.JPG"><img src="photo/游山201-4.JPG"><img src="photo/游山201-5.JPG"><img src="photo/游山201-6.JPG"><img src="photo/游山201-7.jpg"><img src="photo/游山201-8.JPG">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>201</h3>
+            <ul class="room-amenities"><div class="room-amenities-title"> 2 ～ 3人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山202-1.JPG"><img src="photo/游山202-2.JPG"><img src="photo/游山202-3.JPG"><img src="photo/游山202-4.JPG"><img src="photo/游山202-5.JPG"><img src="photo/游山202-6.JPG"><img src="photo/游山202-7.JPG"><img src="photo/游山202-8.JPG">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>202</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2 ～ 3人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山203-1.jpg"><img src="photo/游山203-2.jpg"><img src="photo/游山203-3.JPG"><img src="photo/游山203-4.jpg"><img src="photo/游山203-5.jpg"><img src="photo/游山203-6.JPG"><img src="photo/游山203-7.jpg"><img src="photo/游山203-8.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>203</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2 ～ 4人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+    </main>
+
+    <main class="room-display-grid room-grid-three">
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山205-1.jpg"><img src="photo/游山205-2.jpg"><img src="photo/游山205-3.jpg"><img src="photo/游山205-4.jpg"><img src="photo/游山205-5.jpg"><img src="photo/游山205-6.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>205</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山206-1.JPG"><img src="photo/游山206-2.JPG"><img src="photo/游山206-3.jpg"><img src="photo/游山206-4.JPG"><img src="photo/游山206-5.jpg"><img src="photo/游山206-6.jpg"><img src="photo/游山206-7.jpg"><img src="photo/游山206-8.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>206</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2 ～ 5人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山301-1.JPG"><img src="photo/游山301-2.jpg"><img src="photo/游山301-3.jpg"><img src="photo/游山301-4.jpg"><img src="photo/游山301-5.JPG"><img src="photo/游山301-7.jpg"><img src="photo/游山301-6.JPG"><img src="photo/游山301-8.JPG">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>301</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2 ～ 3人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+    </main>
+
+    <div class="room-display-grid room-grid-two">
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山302-1.jpg"><img src="photo/游山302-2.jpg"><img src="photo/游山302-3.JPG"><img src="photo/游山302-5.jpg"><img src="photo/游山302-6.jpg"><img src="photo/游山302-7.jpg"><img src="photo/游山302-4.JPG"><img src="photo/游山302-8.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>302</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2 ～ 4人</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/游山303-1.jpg"><img src="photo/游山303-2.jpg"><img src="photo/游山303-3.jpg"><img src="photo/游山303-4.jpg"><img src="photo/游山303-5.JPG"><img src="photo/游山303-6.JPG"><img src="photo/游山303-7.jpg"><img src="photo/游山303-9.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>303</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">2 ～ 4人</div><div class="room-amenities-title">房內設施</div><li>戶外戲水池</li><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+    </div>
+
+    <div class="rooms-info-content" style="width: 90%; margin: 0 auto;"><h2 class="added-title" id="wanshui-section">丸水棟</h2></div>
+    
+    <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
+        <div class="gallery-slider">
+            <div id="galleryContainer2" class="gallery-container">
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳.jpg" alt="宜蘭民宿"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳1.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟廚房"><img src="photo/丸水客廳2.jpg" alt="宜蘭民宿"></div>
+                <div class="gallery-item" data-title="丸水包棟廚房"><img src="photo/丸水客廳3.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟兒童遊戲區"><img src="photo/丸水客廳4.jpg" alt="宜蘭住宿"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水客廳5.jpg" alt="宜蘭住宿"></div>
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; width: 90%; margin: 25px auto; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span id="galleryTitle2" style="color: #888; font-size: 0.9rem; letter-spacing: 2px;">丸水101</span>
+                <i class="fa-solid fa-arrow-right-long" style="color: #333;"></i>
+            </div>
+            <div>
+                <span id="prevBtn2" style="cursor: pointer; padding: 10px;"><i class="fa-solid fa-chevron-left"></i></span>
+                <span style="color: #888; letter-spacing: 2px;"><span id="currPage2">1</span> / <span id="totalPage2">6</span></span>
+                <span id="nextBtn2" style="cursor: pointer; padding: 10px;"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <main class="room-display-grid room-grid-three">
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水101-1.jpg"><img src="photo/丸水101-2.jpg"><img src="photo/丸水101-3.jpg"><img src="photo/丸水101-4.jpg"><img src="photo/丸水101-5.jpg"><img src="photo/丸水101-6.jpg"><img src="photo/丸水101-7.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>101</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">雙人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>樓中樓客廳</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水201-1.jpg"><img src="photo/丸水201-2.jpg"><img src="photo/丸水201-3.jpg"><img src="photo/丸水201-4.jpg"><img src="photo/丸水201-5.jpg"><img src="photo/丸水201-7.jpg"><img src="photo/丸水201-8.JPG">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>201</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">雙人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水202-1.jpg"><img src="photo/丸水202-2.jpg"><img src="photo/丸水202-3.jpg"><img src="photo/丸水202-4.jpg"><img src="photo/丸水202-5.jpg"><img src="photo/丸水202-6.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>202</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">雙人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+    </main>
+
+    <main class="room-display-grid room-grid-three">
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水203-1.JPG"><img src="photo/丸水203-2.JPG"><img src="photo/丸水203-3.JPG"><img src="photo/丸水203-4.jpg"><img src="photo/丸水203-5.jpg"><img src="photo/丸水203-6.JPG">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>203</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">四人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水205-1.jpg"><img src="photo/丸水205-2.JPG"><img src="photo/丸水205-3.jpg"><img src="photo/丸水205-4.jpg"><img src="photo/丸水205-5.jpg"><img src="photo/丸水205-6.jpg"><img src="photo/丸水205-7.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>205</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">雙人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水206-1.jpg"><img src="photo/丸水206-2.jpg"><img src="photo/丸水206-3.jpg"><img src="photo/丸水206-4.jpg"><img src="photo/丸水206-5-2.jpg"><img src="photo/丸水206-6.jpg"><img src="photo/丸水206-7.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>206</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">四人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+    </main>
+
+    <main class="room-display-grid room-grid-three" style="margin-bottom: 120px;">
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水301-1.jpg"><img src="photo/丸水301-2.jpg"><img src="photo/丸水301-3.jpg"><img src="photo/丸水301-4.jpg"><img src="photo/丸水301-5.jpg"><img src="photo/丸水301-6.jpg"><img src="photo/丸水301-7.jpg"><img src="photo/丸水301-8.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>301</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">雙人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水302-1.jpg"><img src="photo/丸水302-2.jpg"><img src="photo/丸水302-3.jpg"><img src="photo/丸水302-5.jpg"><img src="photo/丸水302-6.jpg"><img src="photo/丸水302-7.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>302</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">四人房</div><div class="room-amenities-title">房內設施</div><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+        <div class="room-card">
+            <div class="room-photo-slider">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="photo-track">
+                    <img src="photo/丸水303-1.jpg"><img src="photo/丸水303-2.jpg"><img src="photo/丸水303-3.JPG"><img src="photo/丸水303-4.jpg"><img src="photo/丸水303-5.jpg"><img src="photo/丸水303-7.jpg"><img src="photo/丸水303-8.jpg"><img src="photo/丸水303-6.jpg"><img src="photo/丸水303-9.jpg">
+                </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <h3>303</h3>
+            <ul class="room-amenities"><div class="room-amenities-title">四人房</div><div class="room-amenities-title">房內設施</div><li>戶外戲水池</li><li>禁菸房</li><li>免治馬桶</li><li>沐浴用品 / 毛浴巾</li><li>變頻冷暖空調</li><li>浴缸</li><li>陽台</li><li>Wi-Fi</li><li>一樓自助吧 / 膠囊咖啡機</li></ul>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-logo">
+                游山丸水 <span class="footer-logo-en">WANDER</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://line.me/R/ti/p/@413tqyhr" target="_blank" title="LINE" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                    <i class="fa-brands fa-line"></i>
+                </a>
+    
+                <a href="https://www.instagram.com/yo.wander_/" target="_blank" title="Instagram" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+    
+                <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank" title="Facebook" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div> 
+            <div class="footer-contact-info"> 
+                <div class="contact-row"><span>E. youwan2022@gmail.com</span><span class="contact-divider">|</span><span>T. +886 978 603 906</span></div> 
+                <div class="contact-row"><span>宜蘭縣冬山鄉丸山一路136號</span></div>            
+            </div>
+            <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東澳 · 游山海灣 | ABURA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+    /* --- 專屬修正：確保 Logo 在移除預訂按鈕後依然絕對置中 --- */
+    .navbar {
+        position: fixed;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+    }
+    .logo {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin: 0 !important;
+    }
+    .menu-toggle {
+        position: absolute;
+        left: 60px; 
+    }
+
+    /* 東澳未來設施專屬樣式 - 統一字體為 Noto Serif TC */
+    .dongao-future-section {
+        padding: 80px 20px;
+        background-color: #ffffff;
+        font-family: 'Noto Serif TC', serif !important;
+    }
+
+    .da-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .da-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .da-label {
+        display: block;
+        font-size: 0.75rem;
+        color: #bfa37e; 
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-main-title {
+        font-size: 2rem;
+        font-weight: 500;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-divider {
+        width: 40px;
+        height: 1px;
+        background-color: #bfa37e;
+        margin: 0 auto;
+    }
+
+    .da-facility-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .da-card {
+        border: 1px solid #eeeeee;
+        padding: 40px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        min-height: 300px;
+    }
+
+    .da-card:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        border-color: #bfa37e;
+        transform: translateY(-5px);
+    }
+
+    .da-tag {
+        font-size: 0.7rem;
+        background-color: #f8f8f8;
+        color: #888;
+        padding: 3px 10px;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        display: inline-block;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-item-name {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        color: #222;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-description {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.8;
+        text-align: justify;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    /* Coming Soon 響應式 */
+    .coming-soon-wrapper {
+        width: 80%;
+        margin: 80px auto 0 auto;
+        padding: 100px 0;
+        border-top: 1px solid #eee;
+        text-align: center;
+    }
+
+    .coming-soon-text {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: #13406e;
+        opacity: 0.8;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        letter-spacing: clamp(4px, 1.5vw, 15px);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle { left: 20px; }
+        .coming-soon-wrapper { width: 90%; padding: 60px 0; }
+        .da-description { text-align: center; }
+    }
+    </style>
+</head>
+<body class="destination-detail-page">
+    <nav class="navbar destination-nav" id="main-nav">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+    </nav>
+    
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li><a href="javascript:void(0)" id="toggle-destinations">目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i></a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <nav class="sub-nav">
+        <ul>
+            <li><a href="#main-nav" style="text-decoration:none;">東澳 · 宜蘭 〉</a></li>
+            <li><a href="#future-discovery">海灣探索</a></li>
+        </ul>
+    </nav>
+
+    <section><img src="photo/東澳俯視圖生成.jpg" style="width:100%; display:block;" alt="宜蘭東澳海邊住宿"></section>
+
+    <article class="detail-content" style="background-color: #4a5a6a; color: #f6f5f0; padding: 100px 20px;">
+        <div class="content-wrap">
+            <span class="tag" style="color: #f6f5f0; opacity: 0.8; font-family: 'Noto Serif TC', serif;">蘇澳 · 東澳</span>
+            <h1 class="section-title" style="color: #f6f5f0; font-size: 2.8rem; font-weight: 300; margin: 25px 0 5px 0; font-family: 'Noto Serif TC', serif;">游山海灣</h1>
+            
+            <div style="font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: 0.8rem; margin-bottom: 30px; opacity: 0.8; font-weight: 300;">ABURA HIONE</div>
+            
+            <p class="section-desc" style="color: #f6f5f0; font-size: 1rem; max-width: 850px; text-align: center; font-family: 'Noto Serif TC', serif;">佇足於東澳的湛藍海灣，在山海交界處聆聽海浪的節奏 <br>迎著粉鳥林的晨曦與清風，讓遼闊太平洋撫平內心的躁動 <br>於蔚藍海岸邊自由徜徉，在潮起潮落間找回流動的生命力<br>2027 —— 與您相約山海之間。</p>
+        </div>
+    </article>
+
+    <section class="dongao-future-section" id="future-discovery">
+        <div class="da-container">
+            <header class="da-header">
+                <span class="da-label">Upcoming Discovery</span>
+                <h2 class="da-main-title">東澳探索・未來篇章</h2>
+                <div class="da-divider"></div>
+            </header>
+
+            <div class="da-facility-grid">
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Resort</span>
+                        <h3 class="da-item-name">海灣眠月</h3>
+                        <p class="da-description">客房皆坐擁蔚藍海景，讓東澳灣的粼粼波光成為室內的畫作，在潮汐的呼吸聲中，開啟一場枕浪而居的療癒夢境。</p>
+                    </div>
+                </div>
+                
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Epicurean Gala</span>
+                        <h3 class="da-item-name">海際盛筵</h3>
+                        <p class="da-description">將蔚藍海際化作餐桌前的永恆背景，私人主廚預約制席位，對外揭開在地漁獵的風味序幕，於沙灘見證誓言，在星光下籌辦一場與海共鳴的極致慶典</p>
+                    </div>
+                </div>
+            
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Wellness</span>
+                        <h3 class="da-item-name">山海靜心 SPA</h3>
+                        <p class="da-description">結合在地植萃與海洋能量。在山海環繞的氛圍中洗滌旅途疲憊，讓身心回歸最純粹的平靜。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Outdoor</span>
+                        <h3 class="da-item-name">沙灘車獵徑馳騁</h3>
+                        <p class="da-description">穿梭於粉鳥林秘境與灘岸，感受東澳灣特有的礫石地形，體驗野性速度與山海風光的對撞。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Ocean Expedition</span>
+                        <h3 class="da-item-name">岩岸探索</h3>
+                        <p class="da-description">從太平洋海面迎接第一道晨曦，划向地標烏岩角，仰望斷崖與秘境海蝕洞，在立槳與獨木舟的律動中，找回山海間的自由節奏。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Culture</span>
+                        <h3 class="da-item-name">定製魚網出海體驗</h3>
+                        <p class="da-description">與東澳職人一同乘船出海，在湛藍海域中學習古老的定置漁網技法。親身體驗與土地共生的漁村日常，帶走最有溫度的回憶。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="coming-soon-wrapper">
+                <p class="coming-soon-text">Coming Soon ...</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-logo">
+                游山海灣 <span class="footer-logo-en">HIONE</span>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-line"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-contact-info">
+                <div class="contact-row">
+                    <span>E. aburayoushan@gmail.com</span>
+                    <span class="contact-divider">|</span>
+                    <span>T. +886 911 957 936</span>
+                </div>
+            </div>
+            <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

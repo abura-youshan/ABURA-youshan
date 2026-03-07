@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我們 | ABURA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* --- 響應式頁尾排版核心設定 --- */
+        .footer-split-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1100px; 
+            width: 90%;
+            /* 桌面版對齊上方文章左側 */
+            margin: 0 auto 0 5%; 
+            text-align: left;
+            padding-bottom: 40px;
+            flex-wrap: wrap; /* 寬度不足時自動換行 */
+            gap: 30px;
+        }
+
+        .footer-left-info {
+            flex: 1;
+            min-width: 280px; /* 確保在收縮時維持最小可讀寬度 */
+        }
+
+        /* 強制 Logo 精確置左 */
+        .footer-left-info .footer-logo {
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block;
+        }
+
+        .footer-contact-info-vertical {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: #555;
+            word-break: break-all; /* 防止長 Email 在小手機跑版 */
+        }
+
+        .footer-right-join {
+            flex: 1;
+            text-align: right;
+            min-width: 200px;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .join-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #2c2c2c;
+            letter-spacing: 3px;
+        }
+
+        .join-item {
+            font-size: 0.95rem;
+            line-height: 2;
+            color: #555;
+            display: block;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .join-item:hover {
+            color: #8d7b70;
+        }
+
+        /* 響應式版權宣告區塊 */
+        .footer-copyright-wrap {
+            max-width: 1100px;
+            width: 90%;
+            margin: 0 auto 0 5%; 
+            border-top: 1px solid #e0ddd5;
+            padding-top: 25px;
+            text-align: left; 
+        }
+
+        .footer-copyright {
+            color: #999;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- 手機與平板介面調整 (RWD) --- */
+        @media (max-width: 1024px) {
+            .footer-split-content, .footer-copyright-wrap {
+                margin: 0 auto; /* 在中型螢幕回位置中對齊 */
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-split-content {
+                flex-direction: column; /* 垂直堆疊 */
+                text-align: left; /* 依照您的要求維持置左 */
+                gap: 50px;
+            }
+            .footer-right-join {
+                text-align: left; /* 手機版改為置左，方便閱讀 */
+                padding-bottom: 20px;
+            }
+            .footer-contact-info-vertical {
+                align-items: flex-start;
+            }
+            .footer-social {
+                justify-content: flex-start !important;
+            }
+        }
+    </style>
+</head>
+<body class="destination-detail-page">
+
+    <nav class="navbar destination-nav" id="main-nav">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+        <div class="reserve-link"><a href="https://www.booking-owlnest.com/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4?lang=zh_TW&adult=1&child=0&infant=0" target="_blank" class="btn-reserve">預訂</a></div>
+    </nav>
+
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li>
+                <a href="javascript:void(0)" id="toggle-destinations">目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i></a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <header style="min-height: 40vh; background-color: #8d7b70; display: flex; align-items: center; justify-content: center; color: #f6f5f0; padding-top: 80px;">
+        <div style="text-align: center;">
+            <p style="letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 20px;">ABOUT US</p>
+            <h1 style="font-size: 2.5rem; font-weight: 300; letter-spacing: 5px;">關於我們</h1>
+        </div>
+    </header>
+
+    <article class="detail-content" style="background-color: #f6f5f0; padding: 100px 5%;">
+        <div class="content-wrap" style="max-width: 1100px; width: 100%;">
+            <div class="about-row">
+                <div class="about-image-box">
+                    <img src="photo/游山丸水外觀湖1.jpg" class="img-shadow-right" alt="宜蘭ABURA游山">
+                </div>
+                <div class="about-text-box">
+                    <span class="tag">Brand Origin</span>
+                    <h2 class="section-title">自在如風，悠游山海</h2>
+                    <p class="section-desc">
+                        「ABURA」源於對「游」的自由哲學。我們連結日語「油（あぶら）」的純粹與台灣「阿不拉」的親切，將流動與探索轉化為生活方式。在都市日常之外，我們為嚮往自由的靈魂打造棲所，讓生命在此找回最初的節奏。
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-row reverse">
+                <div class="about-text-box">
+                    <span class="tag">Philosophy</span>
+                    <h2 class="section-title">自然共生，不留痕跡的奢華</h2>
+                    <p class="section-desc">
+                        與大地對話，堅持「自然共生」的美學。從深林峽谷到蔚藍海灣，ABURA 始終保留土地原始的氣息。真正的奢華不在於堆砌，而是在不破壞地景的前提下，提供感官與自然的深度連結，讓每次落腳都成為對環境負責的探索。
+                    </p>
+                </div>
+                <div class="about-image-box">
+                    <img src="photo/海.jpg" class="img-shadow-left" alt="宜蘭ABURA游山海邊住宿">
+                </div>
+            </div>
+
+            <div class="about-row">
+                <div class="about-image-box">
+                    <img src="photo/游泳池.JPG" class="img-shadow-right" alt="宜蘭ABURA游山溫泉住宿">
+                </div>
+                <div class="about-text-box">
+                    <span class="tag">Local Soul</span>
+                    <h2 class="section-title">宜蘭情懷，最深情的守護</h2>
+                    <p class="section-desc">
+                        這片土地的氣息，早已滲透進 ABURA 的靈魂。從蘭陽平原的晨曦到太平洋的浪潮，我們將熱愛化作細節裡的守護。我們不只是自然的開拓者，更是純粹美學的傳遞者，引領你隨心所欲地徜徉於山海脈動，找回與大地共鳴的純粹生命力。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-split-content">
+                <div class="footer-left-info">
+                    <div class="footer-logo">ABURA</div>
+                    <div class="footer-contact-info-vertical">
+                        <div class="contact-item">E . aburayoushan@gmail.com</div>
+                        <div class="contact-item">T . +886 911 957 936</div>
+                    </div>
+                    <div class="footer-social" style="justify-content: flex-start; margin: 0; padding: 0;">
+                        <a href="https://lin.ee/413tqyhr" target="_blank"><i class="fa-brands fa-line"></i></a>
+                        <a href="https://www.instagram.com/yo.wander_/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div> 
+                </div>
+
+                <div class="footer-right-join">
+                    <h3 class="join-title">加入 ABURA</h3>
+                    <a href="hiring.html" class="join-item">人才招募</a>
+                    <a href="hiring.html" class="join-item">品牌孵化</a>
+                    <a href="hiring.html" class="join-item">商業合作</a>
+                </div>
+            </div>
+            
+            <div class="footer-copyright-wrap">
+                <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

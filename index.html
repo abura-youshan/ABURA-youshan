@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABURA | 寧靜之美</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* --- 統一金色視覺效果設定 (#d4af37) --- */
+        
+        /* 1. 圖片下方的文字連結效果 */
+        .detail-content a, .item-info a {
+            transition: all 0.4s ease;
+            color: #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .detail-content a:hover, .item-info a:hover {
+            color: #8d7b70 !important;
+            border-bottom-color: #8d7b70 !important;
+        }
+
+        /* 2. 圖片中間的磨砂銘牌按鈕效果 */
+        .photo-column .aspect-box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .photo-column .aspect-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .embedded-white-btn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 25px;
+            background-color: rgba(255, 255, 255, 0.45); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #1a1a1a;
+            width: fit-content;
+            padding: 10px 25px; 
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            z-index: 5;
+            box-sizing: border-box;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        .embedded-white-btn:hover {
+            background-color: rgba(255, 255, 255, 0.8) !important; 
+            color: #8d7b70 !important; 
+            letter-spacing: 5px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); /* 金色微光陰影 */
+        }
+
+        /* 3. 最下方的標準按鈕效果 (同步品牌共創樣式) */
+        .explore-btn-standard {
+            transition: all 0.4s ease;
+        }
+
+        .explore-btn-standard:hover {
+            color: #8d7b70 !important;
+            border-color: #8d7b70 !important;
+        }
+
+        /* 圖片懸停縮放 */
+        .photo-column .aspect-box:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .embedded-white-btn {
+                padding: 8px 18px;
+                font-size: 0.85rem;
+                letter-spacing: 3px;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="main-nav">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+        <div class="reserve-link"><a href="https://www.booking-owlnest.com/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4?lang=zh_TW&adult=1&child=0&infant=0" target="_blank" class="btn-reserve">預訂</a></div>
+    </nav>
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li>
+                <a href="javascript:void(0)" id="toggle-destinations">
+                    目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i>
+                </a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <header style="height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:-1;"><img src="photo/東澳灣.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);"><h1 style="font-family:'Playfair Display',serif; font-size:3rem; letter-spacing:10px; font-weight:300;">游山·重拾快樂森活</h1><p style="font-size:1.3rem; margin-top:15px;">山海漫游  拾光成詩</p></div>
+    </header>
+
+    <main>
+        <section class="abura-story-section">
+            <div class="abura-container">
+                <h2 class="abura-title">ABURA<span class="jp-sub">あぶら｜ 游</span></h2>
+                <p class="abura-slogan">「自在如風，悠游山海。」</p>
+                <hr class="abura-divider">
+                <div class="abura-desc-zh">
+                    <p>
+                        <strong>ABURA</strong>，源自於對「游」的深情稱呼。在日語中，ABURA 原意為「<strong>油（あぶら）</strong>」，承載著質樸而純粹的韻味；而在台灣的語境下，「阿不拉」（あぶら）與游姓有著極深的淵源。
+                    </p>
+                    <p>
+                        賦予了品牌一種跨越邊界的親切感，也完美連結了「游」字背後所代表的流動、探索與悠遊之意。
+                    </p>
+                    <p>
+                        這不僅是一個名字，更是一種生活哲學。我們致力於為每一位嚮往自由的靈魂，打造最純粹的戶外生活體驗。無論是隱匿於深林峽谷間的靜謐棲息，或是奔向湛藍海灣的浪潮探索，我們要做的事，就是打破日常的邊界，引領你在山與海的節奏中，找回那份隨心所欲、悠然自得的「游」意。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-wrapper wander-image-section">
+            <img src="photo/游山丸水外觀湖1.jpg" style="width: 100%; display: block;">
+        </div>
+
+        <section class="detail-content" style="padding-top: 0 !important; margin-top: -40px !important;">
+            <div class="content-wrap">
+                <span class="tag" style="margin-top: 0 !important;">ABURA WANDER</span>
+                <h2 class="section-title">游山丸水</h2>
+                <a href="wander.html" style="text-decoration:none; padding-bottom:6px; font-size:0.85rem;">探索更多</a>
+            </div>
+        </section>
+        
+        <div class="grid-wrapper">
+            <div class="grid-container">
+                <div>
+                    <img src="photo/南澳.jpg" style="width:100%; height:600px; object-fit:cover;">
+                    <div class="item-info">
+                        <span class="tag">ABURA GULU</span>
+                        <h2 class="section-title">游山谷露</h2>
+                        <p class="section-desc">2026 夏秋之際。</p>
+                        <a href="gulu.html" style="text-decoration:none; padding-bottom:6px;">探索更多</a>
+                    </div>
+                </div>
+                <div>
+                    <img src="photo/東澳1.jpg" style="width:100%; height:600px; object-fit:cover;">
+                    <div class="item-info">
+                        <span class="tag">ABURA HIONE</span>
+                        <h2 class="section-title">游山海灣</h2>
+                        <p class="section-desc">2027，向著蔚藍海灣出發。</p>
+                        <a href="hione.html" style="text-decoration:none; padding-bottom:6px;">探索更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="culture-retreat-section">
+            <div class="line-container"><hr class="full-line"></div>
+            <div class="text-container"><h2 class="retreat-title">品牌共創</h2></div>
+        </section>
+    
+        <section class="photo-grid-80">
+            <div class="grid-inner-wrapper">
+                <div class="photo-column">
+                    <div class="aspect-box">
+                        <img src="photo/游山丸水外觀湖1.jpg" alt="游山丸水">
+                        <a href="hiring.html" class="embedded-white-btn">人才招募</a>
+                    </div>
+                </div>
+                <div class="photo-column">
+                    <div class="aspect-box">
+                        <img src="photo/南澳.jpg" alt="游山谷露">
+                        <a href="hiring.html" class="embedded-white-btn">商業合作</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="explore-more-container">
+            <a href="hiring.html" class="explore-btn-standard">探索更多</a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-logo">ABURA</div>
+            <div class="footer-social">
+                <a href="https://line.me/R/ti/p/@413tqyhr" target="_blank"><i class="fa-brands fa-line"></i></a>
+                <a href="https://www.instagram.com/yo.wander_/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-contact-info">
+                <div class="contact-row">
+                    <span>E. aburayoushan@gmail.com</span>
+                    <span class="contact-divider">|</span>
+                    <span>T. +886 911 957 936</span>
+                </div>
+            </div>
+            <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

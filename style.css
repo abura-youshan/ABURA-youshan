@@ -1,0 +1,687 @@
+/* --- 基礎設定 --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Serif TC', serif; background-color: #f6f5f0; color: #2c2c2c; line-height: 1.6; }
+html { scroll-behavior: smooth; }
+
+/* 修正跳轉偏移：主導覽(80px) + 子導覽 + 緩衝 */
+[id] { scroll-margin-top: 130px; }
+#map-section { scroll-margin-top: 200px !important; }
+
+/* --- 導覽列一致化 --- */
+.navbar { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 60px; z-index: 3000; transition: 0.5s; background: transparent; }
+.navbar.scrolled, .destination-nav { background: #f6f5f0 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid #e0ddd5; }
+.logo { font-size: 1.4rem; letter-spacing: 0.5rem; font-weight: 500; font-family: 'Playfair Display', serif; }
+.logo a { text-decoration: none; color: inherit; }
+.bar { width: 28px; height: 1px; background: #333; display: block; margin: 8px 0; }
+.btn-reserve { text-decoration: none; color: #333; border: 1px solid #333; padding: 10px 25px; font-size: 0.8rem; letter-spacing: 2px; }
+
+/* --- 漢堡選單文字格式 --- */
+.full-menu { position: fixed; inset: 0; background: #f6f5f0; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; opacity: 0; visibility: hidden; transition: 0.6s ease; }
+.full-menu.active { opacity: 1; visibility: visible; }
+.menu-close { position: absolute; top: 40px; left: 60px; font-size: 2.5rem; cursor: pointer; }
+.menu-items { list-style: none; }
+.menu-items li { margin-bottom: 25px; }
+.menu-items a { text-decoration: none; color: #333; font-size: 1.8rem; letter-spacing: 2px; font-family: 'Noto Serif TC', serif; }
+.menu-items small { display: block; font-size: 0.7rem; color: #999; text-transform: uppercase; margin-top: 5px; }
+.submenu { display: none; list-style: none; padding-top: 20px; }
+.submenu.active { display: block; }
+.submenu li { margin-bottom: 15px; }
+.submenu a { font-size: 1.4rem !important; color: #666 !important; }
+.submenu-icon { font-size: 0.8rem; margin-left: 10px; transition: 0.3s; }
+
+/* --- 目的地：新增客房連結並排樣式 (位置上移精確版) --- */
+
+/* 1. 確保 li 容器相對定位，主文字鎖定在畫面正中央垂直中軸線 */
+.submenu-row {
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* 2. 主連結容器 (冬山 · 游山丸水) */
+.submenu-row > a:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1; 
+}
+
+/* 3. 客房連結樣式：絕對定位並「向上微調」以對齊主標題 */
+.room-link {
+    position: absolute;
+    /* 調整此數值可控制與主文字的左右距離 */
+    left: calc(50% + 140px); 
+    
+    /* 核心修正：將 top 改為 0.75px */
+    top: 0.75px; 
+    
+    display: flex; /* 改回 flex 方便中文與英文置中對齊 */
+    flex-direction: column; 
+    align-items: center; /* 讓內部的中文字與 ROOMS 垂直置中對齊 */
+    text-wrap: nowrap;
+    
+    font-size: 0.85rem !important; 
+    color: #8d7b70 !important;   
+    text-decoration: none;
+    font-family: 'Noto Serif TC', serif;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+/* 4. 箭頭樣式：移至「游山丸水」與「精選客房」正中間 */
+.room-link::before {
+    content: "\f105"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    /* 將箭頭推向左側空間的正中央 */
+    left: -25px; 
+    
+    font-size: 0.75rem;
+    /* 修正 translateY 使箭頭在中文字的水平中心線上 */
+    transform: translateY(8px); 
+}
+
+/* 5. 雙方英文字(small)水平平行：強制高度一致 */
+.submenu-row small, 
+.room-link small {
+    font-size: 0.6rem !important;
+    color: #bbb !important;
+    display: block;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* 修正左側 WANDER 的間距 */
+.submenu-row small {
+    margin-top: 18px !important; 
+}
+
+/* 6. 修正右側 ROOMS 的間距：在「精選客房」下方居中 */
+.room-link small {
+    margin-top: 15px !important; 
+    text-align: center; /* 讓 ROOMS 在精選客房下方置中 */
+    padding-left: 0; /* 移除原本為了避開箭頭的 padding */
+    width: 100%;
+}
+
+/* 懸停金色效果 */
+.menu-items a:hover, 
+.submenu a:hover, 
+.room-link:hover {
+    color: #bd9974 !important;
+}
+
+/* --- 手機版 RWD：向下箭頭定位優化與連結簡化 --- */
+    @media (max-width: 768px) {
+        /* 1. 父容器設定 */
+        .submenu-row {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 2. 下向箭頭：與文字保持和諧的間距 */
+        .submenu-row::after {
+            content: "\f107"; /* FontAwesome 向下箭頭 */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            
+            /* 核心定位：調整為 +88px 或 +90px 讓間距更寬鬆和諧 */
+            left: calc(50% + 100px); 
+            top: 3px; 
+            
+            font-size: 1rem;
+            color: #8d7b70;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        /* 旋轉動畫 */
+        .submenu-row.show-room::after {
+            transform: rotate(180deg);
+        }
+
+        /* 3. 住宿房型連結：移除左側小箭頭，並置中顯示 */
+        .room-link {
+            position: relative !important;
+            left: 0 !important;
+            top: 0 !important;
+            display: none; 
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* 移除住宿房型前面的 ::before 小箭頭 */
+        .room-link::before {
+            display: none !important;
+        }
+
+        /* 4. 觸發顯示 */
+        .submenu-row.show-room .room-link {
+            display: flex;
+            animation: fadeInDown 0.4s ease forwards;
+        }
+
+        /* 5. 英文 ROOMS 樣式調整 */
+        .room-link small {
+            margin-top: 8px !important;
+            font-size: 0.65rem !important;
+            text-align: center;
+            letter-spacing: 2px;
+            padding-left: 0 !important; /* 確保徹底置中 */
+        }
+    }
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+/* --- 分頁專屬：子導覽列 (貼合主導覽) --- */
+.sub-nav { position: sticky; top: 80px; background: #f6f5f0; padding: 15px 0; border-bottom: 1px solid #e0ddd5; text-align: center; z-index: 2000; }
+.sub-nav ul { list-style: none; display: flex; justify-content: center; gap: 25px; }
+.sub-nav a { text-decoration: none; color: #888; font-size: 0.85rem; letter-spacing: 1px; white-space: nowrap; }
+
+/* --- 內容排版標準 --- */
+.tag { font-size: 0.85rem; color: #888; letter-spacing: 2px; margin-bottom: 15px; display: block; text-transform: uppercase; }
+.section-title { font-size: 1.8rem; font-weight: 300; margin-bottom: 20px; color: #333; letter-spacing: 2px; font-family: 'Playfair Display', 'Noto Serif TC', serif; }
+.section-desc { font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 25px; max-width: 850px; }
+
+.detail-content { padding: 80px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.content-wrap { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+
+/* 首頁專屬 Grid */
+.grid-wrapper { width: 80%; margin: 0 auto 120px auto; }
+.grid-container { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 40px; }
+.item-info { padding-top: 30px; text-align: left; }
+
+/* 照片集與房型 */
+.gallery-slider { width: 80%; margin: 0 auto; overflow: hidden; position: relative; }
+.gallery-container { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+.gallery-item { flex: 0 0 100%; }
+.gallery-item img { width: 100%; height: 65vh; object-fit: cover; display: block; }
+
+.room-display-grid { width: 90%; margin: 0 auto 40px auto; display: grid; gap: 40px; }
+.room-card { background: #fff; border: 1px solid #eee; padding-bottom: 30px; }
+.photo-track { display: flex; transition: 0.5s ease; height: 100%; }
+.photo-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; opacity: 0; transition: 0.3s; }
+.room-card:hover .slider-btn { opacity: 1; }
+
+/* 頁尾 */
+.main-footer { padding: 80px 40px; background: #f6f5f0; border-top: 1px solid #e0ddd5; }
+.footer-center-content { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 35px; }
+.footer-logo { font-size: 1.4rem; letter-spacing: 20px; font-weight: 400; color: #2c2c2c; font-family: 'Playfair Display', serif; padding-left: 20px; }
+.footer-social { display: flex; gap: 40px; position: relative; z-index: 9000; }
+.footer-social a { color: #2c2c2c; font-size: 1.8rem; }
+.footer-contact-info { display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; color: #555; }
+.contact-row { display: flex; justify-content: center; align-items: center; gap: 20px; }
+.contact-divider { margin: 0 10px; color: #ccc; }
+
+/* --- 關於我們專用排版 --- */
+.about-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 120px;
+    text-align: left;
+}
+
+/* 核心修正：讓 reverse 區塊在電腦端呈現「文字左、圖片右」 */
+.about-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.about-image-box, .about-text-box {
+    flex: 1;
+}
+
+.about-image-box img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+/* 陰影修正 */
+.img-shadow-right { box-shadow: 15px 15px 0px #8d7b70; }
+/* 文字在左時，陰影向左偏偏移 (-15px) */
+.img-shadow-left { box-shadow: -15px 15px 0px #8d7b70; }
+
+
+/* ============================================================
+   RWD 響應式佈局修正
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .navbar { padding: 0 30px; }
+    .grid-wrapper { width: 90%; }
+    .room-grid-three { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .navbar { height: 70px; padding: 0 20px; }
+    .logo { font-size: 1.2rem; letter-spacing: 0.3rem; }
+    .btn-reserve { padding: 8px 15px; font-size: 0.75rem; }
+    .menu-close { left: 20px; top: 25px; }
+
+    header h1 { font-size: 2.2rem !important; letter-spacing: 5px !important; }
+
+    .detail-content { padding: 60px 20px; }
+    .section-title { font-size: 1.6rem; }
+    
+    .grid-container, 
+    .room-grid-three, 
+    .room-grid-two,
+    #dining-section div[style*="grid"],
+    #facility-section div[style*="grid"] { 
+        grid-template-columns: 1fr !important; 
+        gap: 30px; 
+    }
+    
+    .grid-wrapper { width: 100%; padding: 0 20px; }
+    .item-info { padding-top: 15px; }
+    .item-info img { height: 400px !important; }
+
+    .gallery-item img { height: 45vh; }
+    .gallery-slider { width: 100%; }
+
+    /* 關於我們手機版核心 */
+    .about-row { 
+        flex-direction: column !important; 
+        text-align: center;
+        gap: 30px;
+        margin-bottom: 60px !important;
+    }
+    
+    .about-row.reverse { 
+        flex-direction: column-reverse !important; 
+    }
+
+    .about-row div[style*="flex: 1"] { width: 100%; }
+    .about-row img { box-shadow: none !important; }
+
+    /* --- 子導覽列修正：強制單行可滑動 --- */
+    .sub-nav { 
+        top: 70px; 
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
+        padding: 12px 0;
+        display: block; /* 確保佔滿寬度 */
+        white-space: nowrap; /* 核心：禁止內部文字換行 */
+    }
+    
+    .sub-nav ul { 
+        display: inline-flex; /* 核心：讓寬度由內容撐開而非父層限制 */
+        justify-content: center; 
+        min-width: 100%; /* 當內容少時依然置中 */
+        padding: 0 20px; 
+        gap: 20px; 
+    }
+    
+    /* 隱藏捲軸 */
+    .sub-nav::-webkit-scrollbar { display: none; }
+
+    .contact-row { flex-direction: column; gap: 5px; }
+    .contact-divider { display: none; }
+}
+
+@media (max-width: 480px) {
+    .section-title { font-size: 1.4rem; }
+    .tag { font-size: 0.75rem; }
+    .room-photo-slider { aspect-ratio: 1 / 1; }
+}
+
+/* --- ABURA 品牌故事專屬樣式 (新增) --- */
+.abura-story-section {
+    padding: 100px 20px;
+    background-color: #f6f5f0; /* 維持與 body 一致背景 */
+    text-align: center;
+}
+
+.abura-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.abura-title {
+    font-size: 2rem;
+    letter-spacing: 0.4rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', 'Noto Serif TC', serif;
+}
+
+.abura-title .jp-sub {
+    font-size: 1.1rem;
+    color: #8d7b70; /* 使用你約定好的陰影色調作為點綴 */
+    font-weight: normal;
+    display: block;
+    margin-top: 5px;
+    letter-spacing: 0.2rem;
+}
+
+.abura-slogan {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 25px 0 40px 0;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.abura-divider {
+    width: 40px;
+    height: 1px;
+    background-color: #ccc;
+    margin: 0 auto 40px auto;
+    border: none;
+}
+
+.abura-desc-zh {
+    text-align: justify;
+    margin-bottom: 50px;
+}
+
+.abura-desc-zh p {
+    margin-bottom: 20px;
+    line-height: 2;
+}
+
+.abura-desc-zh strong {
+    color: #2c2c2c;
+    border-bottom: 1px solid #8d7b70;
+    padding-bottom: 2px;
+}
+
+.abura-desc-en {
+    text-align: justify;
+    font-size: 0.9rem;
+    color: #777;
+    border-top: 1px solid #e0ddd5;
+    padding-top: 40px;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.abura-highlight {
+    color: #8d7b70;
+    font-weight: 600;
+}
+
+/* 針對手機版的微調 */
+@media (max-width: 768px) {
+    .abura-story-section { padding: 60px 20px; }
+    .abura-title { font-size: 1.6rem; }
+    .abura-slogan { font-size: 1rem; }
+    .abura-desc-zh, .abura-desc-en { text-align: center; } /* 手機版文字居中較美觀 */
+}
+
+/* --- 頁尾調整：縮短距離 + 淺色英文副標 --- */
+
+.footer-logo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 5px; /* 中英文之間的距離 */
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    font-weight: 500;
+    color: #2c2c2c; /* 中文維持深色 */
+    font-family: 'Noto Serif TC', serif;
+    margin-bottom: 12px; /* 縮短品牌標題與聯絡資訊的距離 */
+    text-align: center;
+}
+
+.footer-logo-en {
+    font-size: 0.8rem;
+    letter-spacing: 0.8rem;
+    font-family: 'Playfair Display', serif;
+    color: #bbb; /* 這裡改為淺灰色 */
+    text-transform: uppercase;
+    padding-left: 0.8rem;
+}
+
+.footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* 聯絡資訊行間距縮小 */
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px; /* 縮短聯絡資訊與社群圖示的距離 */
+}
+
+.footer-social {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 5px; /* 確保不留過多空白 */
+}
+
+/* --- 游山丸水大圖上方：橫線 + 文字設計 --- */
+.wander-image-section {
+    position: relative;
+    display: block; 
+    /* 預留足夠空間給線段與文字 */
+    padding-top: 205px; 
+    padding-bottom: 20px;
+    background-color: #f6f5f0;
+    text-align: center;
+}
+
+/* 1. 頂部橫線 */
+.wander-image-section::before {
+    content: "";
+    display: block; 
+    width: 100%; 
+    height: 1px; 
+    background-color: #8d7b70; 
+    position: absolute;
+    top: 0px; 
+    left: 0;
+}
+
+/* 2. 中間文字：文旅度假 (完全對齊標題樣式) */
+.wander-image-section::after {
+    content: "文旅度假";
+    display: block;
+    position: absolute;
+    top: 75px; /* 調整文字在線段與圖片間的垂直位置 */
+    left: 50%;
+    transform: translateX(-50%);
+            
+    /* --- 字體形狀關鍵設定 --- */
+    font-family: 'Noto Serif TC', serif; /* 確保與游山丸水使用同款宋體 */
+    font-size: 2.2rem;         /* 大小對齊 .section-title */
+    font-weight: 300;          /* 粗細對齊 .section-title */
+    color: #333333;            /* 顏色對齊標題色 */
+    letter-spacing: 0.5rem;    /* 這裡的字距要視你的標題習慣微調 */
+    margin-right: -0.5rem;     /* 抵銷字距，確保視覺絕對置中 */
+            
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* 文旅度假 區塊樣式 */
+.culture-retreat-section {
+    background-color: #f5f4f0; /* 圖片中的米灰色背景 */
+    padding: 0;               /* 移除外部內距，改由內部容器控制 */
+    text-align: center;
+}
+
+/* 長橫線樣式 */
+.line-container {
+    width: 80%;                /* 設定線條寬度，若要完全滿版可設為 100% */
+    margin: 0 auto;
+}
+
+.full-line {
+    border: 0;
+    border-top: 1px solid #a89a8e; /* 帶有品牌色調的細線 */
+    margin: 0;
+}
+
+/* 文字樣式修正：將 margin-top 調小，確保線條到文字的距離與文字到圖片的距離一致 */
+.text-container {
+    margin-top: 45px;          /* 縮小線條與文字的距離 */
+    margin-bottom: 45px;       /* 新增：文字與下方圖片的對等距離 */
+}
+
+.retreat-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 1.2rem;
+    color: #333;
+    margin-right: -1.2rem;
+    line-height: 1;            /* 移除行高造成的額外空白 */
+}
+
+/* 手機端微調 */
+@media (max-width: 768px) {
+    .culture-retreat-section {
+        padding: 60px 0;
+    }
+    .retreat-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.6rem;
+    }
+}
+
+/* 2. 下方圖片區塊修正：移除頂部多餘間距 */
+.photo-grid-80 {
+    background-color: #f5f4f0; 
+    padding: 0 0 100px 0;      /* 將 top padding 設為 0，完全對齊上方文字的 margin-bottom */
+    width: 100%;
+}
+/* 橫線寬度建議對齊圖片寬度 (80%) */
+.line-container {
+    width: 80%;                
+    margin: 0 auto;
+}
+/* 核心設定：佔據頁面 80% 並居中 */
+.grid-inner-wrapper {
+    width: 80%;               /* 兩張照片總和佔全銀幕 80% */
+    margin: 0 auto;           
+    display: flex;            
+    gap: 30px;                /* 兩張照片中間的間距 */
+}
+
+.photo-column {
+    flex: 1;
+}
+
+/* 4:3 比例容器 */
+.aspect-box {
+    width: 100%;
+    aspect-ratio: 4 / 3;      /* 強制設定 4:3 比例 */
+    overflow: hidden;         
+}
+
+.aspect-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.aspect-box img:hover {
+    transform: scale(1.03);   /* 微小的放大效果增加質感 */
+}
+
+@media (max-width: 768px) {
+    /* --- 1. 文旅度假文字區塊：高度統一對稱 --- */
+    .culture-retreat-section {
+        padding: 0 !important;
+    }
+
+    .culture-retreat-section .text-container {
+        /* 統一設定為 35px，確保文字在橫線與圖片的正中間 */
+        margin-top: 35px !important;    
+        margin-bottom: 35px !important; 
+    }
+
+    .retreat-title {
+        font-size: 1.6rem !important;
+        letter-spacing: 0.6rem !important;
+        margin-right: -0.6rem !important;
+        line-height: 1.2 !important; /* 稍微給一點行高，避免字體被切到 */
+    }
+
+    /* --- 2. 圖片區塊：切換為上下堆疊 --- */
+    .photo-grid-80 {
+        padding: 0 0 60px 0 !important; /* 移除頂部內距，由上方文字的 margin 控制 */
+    }
+
+    .grid-inner-wrapper {
+        width: 90% !important;           /* 手機版放寬至 90%，視覺較大氣 */
+        flex-direction: column !important; /* 關鍵：由左右並排改為上下堆疊 */
+        gap: 20px !important;            /* 兩張照片之間的垂直距離 */
+        margin: 0 auto !important;
+    }
+
+    .photo-column {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    /* 確保 4:3 比例在手機上依然精確 */
+    .aspect-box {
+        width: 100% !important;
+        aspect-ratio: 4 / 3 !important;
+    }
+    
+    .line-container {
+        width: 90% !important; /* 橫線寬度同步調整 */
+    }
+}
+
+/* 探索更多容器：調整與圖片的間距 */
+.explore-more-container {
+    width: 100%;
+    text-align: center;
+    background-color: #f5f4f0;
+    /* 縮小與上方圖片的距離，從原本的 50px 改為 25px */
+    margin-top: -25px; 
+    padding-bottom: 60px; /* 留出底部空間銜接 Footer */
+}
+
+/* 復刻您 CSS 中的標準連結樣式 */
+.explore-btn-standard {
+    text-decoration: none;
+    color: #333;
+    /* 嚴格對齊您原本的設定 */
+    font-size: 1.2rem;             
+    border-bottom: 1px solid #333; 
+    padding-bottom: 6px;            
+    letter-spacing: 1px;
+    font-family: 'Noto Serif TC', serif;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.explore-btn-standard:hover {
+    color: #8d7b70;
+    border-bottom-color: #8d7b70;
+}
+
+/* ============================================================
+   手機模式 RWD 統一調整
+   ============================================================ */
+@media (max-width: 768px) {
+    .explore-more-container {
+        /* 手機版同步縮小距離 */
+        margin-top: 20px !important;
+        padding-bottom: 50px !important;
+    }
+}

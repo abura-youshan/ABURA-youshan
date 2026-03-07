@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南澳 · 游山谷露 | ABURA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+    /* --- 導覽列位置修正：確保 Logo 在移除預訂按鈕後依然絕對置中 --- */
+    .navbar {
+        position: fixed;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+    }
+    .logo {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin: 0 !important;
+    }
+    .menu-toggle {
+        position: absolute;
+        left: 60px;
+    }
+
+    /* 南澳未來設施專屬樣式 - 統一字體為 Noto Serif TC */
+    .gulu-future-section {
+        padding: 80px 20px;
+        background-color: #ffffff;
+        font-family: 'Noto Serif TC', serif !important;
+    }
+
+    .da-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .da-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .da-label {
+        display: block;
+        font-size: 0.75rem;
+        color: #8d7b70; 
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-main-title {
+        font-size: 2rem;
+        font-weight: 500; /* 略微加重符合宋體美感 */
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-divider {
+        width: 40px;
+        height: 1px;
+        background-color: #8d7b70;
+        margin: 0 auto;
+    }
+
+    .da-facility-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .da-card {
+        border: 1px solid #eeeeee;
+        padding: 40px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        min-height: 300px;
+    }
+
+    .da-card:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        border-color: #8d7b70;
+        transform: translateY(-5px);
+    }
+
+    .da-tag {
+        font-size: 0.7rem;
+        background-color: #f8f8f8;
+        color: #888;
+        padding: 3px 10px;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        display: inline-block;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-item-name {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        color: #222;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    .da-description {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.8;
+        text-align: justify;
+        font-family: 'Noto Serif TC', serif;
+    }
+
+    /* Coming Soon 響應式 */
+    .coming-soon-wrapper {
+        width: 80%;
+        margin: 80px auto 0 auto;
+        padding: 100px 0;
+        border-top: 1px solid #eee;
+        text-align: center;
+    }
+
+    .coming-soon-text {
+        font-family: 'Playfair Display', serif; /* 根據原排版保留英文花體感，若需全宋體可改 Noto Serif TC */
+        font-style: italic;
+        color: #214b21; 
+        opacity: 0.8;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        letter-spacing: clamp(4px, 1.5vw, 15px);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle { left: 20px; }
+        .coming-soon-wrapper { width: 90%; padding: 60px 0; }
+        .da-description { text-align: center; }
+    }
+    </style>
+</head>
+<body class="destination-detail-page">
+    <nav class="navbar destination-nav" id="main-nav">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+    </nav>
+    
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li><a href="javascript:void(0)" id="toggle-destinations">目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i></a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <nav class="sub-nav">
+        <ul>
+            <li><a href="#main-nav" style="text-decoration:none;">南澳 · 宜蘭 〉</a></li>
+            <li><a href="#future-discovery">山谷體驗</a></li>
+        </ul>
+    </nav>
+
+    <section><img src="photo/南澳俯視圖生成.jpg" style="width:100%; display:block;" alt="宜蘭南澳溫泉住宿"></section>
+
+    <article class="detail-content" style="background-color: #5d6d5d; color: #f6f5f0; padding: 100px 20px;">
+        <div class="content-wrap">
+            <span class="tag" style="color: #f6f5f0; opacity: 0.8; font-family: 'Noto Serif TC', serif;">南澳 · 碧候</span>
+            <h1 class="section-title" style="color: #f6f5f0; font-size: 2.8rem; font-weight: 300; margin: 25px 0; font-family: 'Noto Serif TC', serif;">游山谷露</h1>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: 0.8rem; margin-bottom: 30px; opacity: 0.8; font-weight: 300;">ABURA GULU</div>
+            
+            <p class="section-desc" style="color: #f6f5f0; font-size: 1rem; max-width: 850px; text-align: center; font-family: 'Noto Serif TC', serif;">隱於南澳碧候深處的山谷，在翠綠環抱中重拾靜謐棲息<br>聽溪流與溫泉的對話，讓溫潤泉水洗滌日常的喧囂 <br>於山水之間悠然落腳，開啟一場隨心所欲的野奢探索<br>2026 Autumn —— 靜謐棲息，秋日啟幕</p>
+        </div>
+    </article>
+
+    <section class="gulu-future-section" id="future-discovery">
+        <div class="da-container">
+            <header class="da-header">
+                <span class="da-label">Valley Expedition</span>
+                <h2 class="da-main-title">山谷歲月・棲息篇章</h2>
+                <div class="da-divider"></div>
+            </header>
+
+            <div class="da-facility-grid">
+                
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Refuge</span>
+                        <h3 class="da-item-name">谷中隱寓</h3>
+                        <p class="da-description">當溫潤的湯泉洗去喧囂，暖意在霧中緩緩升起，棲所隨著山影靜謐漂流，這是一場關於時間與自我的無聲對白。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Gastronomy</span>
+                        <h3 class="da-item-name">川谷旬食</h3>
+                        <p class="da-description">採擷山林間的時令鮮採，與慢燉慢熬的甘醇湯底交織。在微涼的山谷夜晚，圍繞氤氳熱氣，品嚐大地的溫潤饋贈。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Starlight Cinema</span>
+                        <h3 class="da-item-name">星幕影院</h3>
+                        <p class="da-description">在山谷獨有的緩慢節奏裡，我們為您在草坡上鋪設了柔軟的席位，讓經典光影伴隨微風與蟲鳴，開啟一場屬於自然與您的專屬電影時光。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Adventure</span>
+                        <h3 class="da-item-name">秘境溯溪</h3>
+                        <p class="da-description">踏入清冽碧綠的溪水，順著自然的脈絡向上探索。在岩石與水花間找尋最純粹的沁涼，感受生命躍動的張力。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Exploration</span>
+                        <h3 class="da-item-name">森徑漫步</h3>
+                        <p class="da-description">沿著未被驚擾的林間古道，在闊葉樹影下呼吸原始芬多精。以緩慢的步履丈量土地，與這片森林建立深層連結。</p>
+                    </div>
+                </div>
+
+                <div class="da-card">
+                    <div class="da-card-content">
+                        <span class="da-tag">Art & Soul</span>
+                        <h3 class="da-item-name">山靈律動</h3>
+                        <p class="da-description">聽泰雅靈魂的吟唱在谷間迴盪，看著火焰在夜色中起舞。這是一場視覺與心靈的共振，領略這片土地最深厚的文化根源。</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="coming-soon-wrapper">
+                <p class="coming-soon-text">Coming Soon ...</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-logo">
+                游山谷露 <span class="footer-logo-en">GULU</span>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-line"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-contact-info">
+                <div class="contact-row">
+                    <span>E. aburayoushan@gmail.com</span>
+                    <span class="contact-divider">|</span>
+                    <span>T. +886 911 957 936</span>
+                </div>
+                <div class="contact-row"><span>宜蘭縣南澳鄉金岳村金岳路190號</span></div>
+            </div>
+            <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

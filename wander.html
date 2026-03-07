@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冬山 · 游山丸水 | ABURA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+    /* --- 精確區塊間距控制 (不互相干擾版) --- */
+    
+    /* 1. 客房區塊：文字與下方相簿的間距 */
+    #room-section { padding-bottom: 20px !important; }
+    #room-section .section-title { margin-bottom: 5px !important; }
+    #room-section .section-desc { margin-bottom: 5px !important; }
+
+    /* 2. 餐飲與設施區塊：還原並微調網格頂部距離 */
+    #dining-section .section-title, #facility-section .section-title { margin-bottom: 5px !important; }
+    #dining-section .section-desc, #facility-section .section-desc { margin-bottom: 10px !important; }
+    /* 針對餐飲與設施的網格容器，保持適度距離 (30px) */
+    #dining-section .room-display-grid, 
+    #dining-section div[style*="grid"],
+    #facility-section div[style*="grid"] { 
+        margin-top: 30px !important; 
+    }
+
+    /* 3. 須知區塊：專屬處理文字與圖片 (目標是貼近) */
+    #notice-section .section-title { margin-bottom: 5px !important; }
+    #notice-section p.section-desc { 
+        margin-bottom: 5px !important; 
+        padding-bottom: 10px !important; 
+    }
+    /* 僅針對須知區塊內緊接在文字後的這張特定圖片進行壓迫 */
+    #notice-section p.section-desc + img { 
+        margin-top: 10px !important; 
+        display: block !important;
+    }
+
+    /* 4. 交通區塊：保持與上方「須知照片」的 100px 距離 */
+    #map-section { 
+        margin-top: 100px !important; 
+        display: block !important;
+        clear: both;
+    }
+    #map-section .section-title { margin-bottom: 5px !important; }
+    #map-section .section-desc { margin-bottom: 15px !important; }
+    #map-section iframe { margin-top: 10px !important; }
+
+    /* 通用 Tag 距離標題 */
+    .detail-content .tag { margin-bottom: 5px !important; }
+    </style>
+</head>
+<body class="destination-detail-page">
+    <nav class="navbar destination-nav" id="main-nav">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+        <div class="reserve-link">
+            <a href="https://www.booking-owlnest.com/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4?lang=zh_TW&adult=1&child=0&infant=0" target="_blank" class="btn-reserve">預訂</a>
+        </div>
+    </nav>
+
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li>
+                <a href="javascript:void(0)" id="toggle-destinations">
+                    目的地 <small>DESTINATIONS</small> 
+                    <i class="fa-solid fa-chevron-down submenu-icon"></i>
+                </a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <nav class="sub-nav">
+        <ul>
+            <li><span style="color:#888; font-size:0.85rem; letter-spacing:1px;">冬山 · 宜蘭 〉</span></li>
+            <li><a href="#room-section">客房</a></li>
+            <li><a href="#dining-section">餐飲</a></li>
+            <li><a href="#facility-section">設施</a></li>
+            <li><a href="#notice-section">須知</a></li>
+            <li><a href="#map-section">交通</a></li>
+        </ul>
+    </nav>
+
+    <section style="width: 100%;">
+        <img src="photo/游山丸水外觀湖1.jpg" style="width:100%; display:block;" alt="宜蘭住宿游山丸水">
+    </section>
+
+    <article class="detail-content" style="background-color: #8d7b70; color: #f6f5f0; padding: 100px 20px;">
+        <div class="content-wrap">
+            <span class="tag" style="color: #f6f5f0; opacity: 0.8; font-size: 0.85rem; letter-spacing: 2px;">冬山 · 丸山</span>
+            <h1 class="section-title" style="color: #f6f5f0; font-size: 2.8rem; font-weight: 300; margin: 25px 0;">游山丸水</h1>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: 0.8rem; margin-bottom: 30px; opacity: 0.8; font-weight: 300;">ABURA WANDER</div>
+            
+            <p class="section-desc" style="color: #f6f5f0; font-size: 1rem; max-width: 850px; line-height: 2; text-align: center;">
+                游山丸水座落在冬山的稻浪與池畔之間，緊鄰梅花湖<br>
+                    我們在金黃穗影與清澈水鏡中，親手栽下一顆寧靜的種子<br>
+                    這裡不僅是一處居所，更是一場關於「歸還」的實驗 —— 將感官歸還給自然，將時間歸還給自己
+            </p>
+        </div>
+    </article>
+
+    <section class="detail-content" id="room-section" style="text-align: left; padding: 80px 10%; background-color: #f6f5f0;">
+        <div style="width: 100%;">
+            <span class="tag">住宿</span>
+            <h2 class="section-title">客房</h2>
+            <p class="section-desc">精心打造的客房，分屬「游山」與「丸水」兩棟建築，由湛藍的游泳池與戲水池相連。<br>在這裡，您可以聽著風穿過林梢的聲音入眠，在晨曦的微光中醒來，找回那份久違的從容與自我。</p>
+            <div style="display: flex; gap: 30px; margin-top: 10px;">
+                <a href="rooms-list.html" style="text-decoration: none; color: #333; border-bottom: 1px solid #333; padding-bottom: 5px; font-size: 0.9rem;">查看所有住宿房型</a>
+                <a href="https://www.booking-owlnest.com/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4?lang=zh_TW&adult=1&child=0&infant=0" target="_blank" style="text-decoration: none; color: #333; border-bottom: 1px solid #333; padding-bottom: 5px; font-size: 0.9rem;">立即預訂</a>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
+        <div class="gallery-slider">
+            <div id="galleryContainer" class="gallery-container">
+                <div class="gallery-item" data-title="201"><img src="photo/游山201.JPG" alt="宜蘭游山丸水"></div>
+                <div class="gallery-item" data-title="202"><img src="photo/游山202.JPG" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="203"><img src="photo/游山203.jpg" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="205"><img src="photo/游山205.jpg" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="206"><img src="photo/游山206.JPG" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="301"><img src="photo/游山301.jpg" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="302"><img src="photo/游山302.jpg" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="303"><img src="photo/游山303.jpg" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="photo/丸水棟客廳.jpg" alt="Wanshui Building"></div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; width: 80%; margin: 25px auto; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span id="galleryTitle" style="color: #888; font-size: 0.9rem; letter-spacing: 2px;">游山201</span>
+                <i class="fa-solid fa-arrow-right-long" style="color: #333;"></i>
+            </div>
+            <div>
+                <span id="prevBtn" style="cursor: pointer; padding: 10px;"><i class="fa-solid fa-chevron-left"></i></span>
+                <span style="color: #888; letter-spacing: 2px;"><span id="currPage">1</span> / <span id="totalPage">9</span></span>
+                <span id="nextBtn" style="cursor: pointer; padding: 10px;"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="detail-content" id="dining-section" style="text-align: left; padding: 80px 10%; background-color: #f6f5f0;">
+        <div style="width: 100%;">
+            <span class="tag">餐飲</span>
+            <h2 class="section-title">早餐</h2>
+            <p class="section-desc">提供中式九宮格與西式餐盤。</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
+                <div>
+                    <img src="photo/早餐中式.jpg" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水早餐">
+                    <span class="tag">中式</span>
+                    <h3 class="section-title" style="font-size: 1.8rem;">清粥九宮格</h3>
+                    <p class="section-desc">精選在地食材製作的九道精緻小菜，搭配溫潤清粥，開啟充滿活力的早晨。</p>
+                </div>
+                <div>
+                    <img src="photo/早餐西式.jpg" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水早餐">
+                    <span class="tag">西式</span>
+                    <h3 class="section-title" style="font-size: 1.8rem;">雞腿排餐盤</h3>
+                    <p class="section-desc">鮮嫩多汁的煎烤雞腿排，搭配新鮮沙拉與手作麵包，提供豐富的營養與美味。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="detail-content" id="facility-section" style="text-align: left; padding: 80px 10% 0 10%; background-color: #f6f5f0;">
+        <div style="width: 100%;">
+            <span class="tag">設施</span>
+            <h2 class="section-title">設施</h2>
+            <p class="section-desc">游泳池、戲水池、划船</p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 60px;">
+                <div>
+                    <img src="photo/游泳池.JPG" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游泳池">
+                    <span class="tag">戶外設施</span>
+                    <h3 class="section-title" style="font-size: 1.6rem;">游泳池</h3>
+                    <p class="section-desc">在波光粼粼中暢游，享受大自然與天然湧泉水的完美結合。</p>
+                </div>
+                <div>
+                    <img src="photo/戲水池.JPG" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="戲水池">
+                    <span class="tag">戶外設施</span>
+                    <h3 class="section-title" style="font-size: 1.6rem;">戲水池</h3>
+                    <p class="section-desc">安全的淺水區域，適合與家人朋友一同嬉戲歡笑。</p>
+                </div>
+                <div>
+                    <img src="photo/划船區.JPG" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="划船區">
+                    <span class="tag">水上活動</span>
+                    <h3 class="section-title" style="font-size: 1.6rem;">划船區</h3>
+                    <p class="section-desc">在平靜的湖面上划槳，感受微風吹拂與悠閒時光。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="detail-content" id="notice-section" style="text-align: left; padding: 100px 10%; background-color: #f6f5f0;">
+        <div style="width: 100%;">
+            <span class="tag">須知</span>
+            <h2 class="section-title">入住須知</h2>
+            <p class="section-desc">入住時間為下午 3:00，退房時間為上午 11:00。全館禁菸並謝絕寵物入住。</p>
+            <img src="photo/須知.jpg" style="width: 80%; height: auto; display: block; margin: 80px 0;" alt="Facility Notice Image">
+            
+            <div id="map-section" style="width: 100%;">
+                <span class="tag">GOOGLE MAP</span>
+                <h2 class="section-title">地圖</h2>
+                <p class="section-desc" style="margin-bottom: 30px;">宜蘭縣冬山鄉丸山一路136號</p>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.328325983792!2d121.7580666!3d24.6365116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3467f60775d71329%3A0xc319236166299b64!2zMjY55a6c6Jit57ij5Yas5bGx6YSJ5Li45bGx5LiA6LevMTM26Jmf!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-logo">
+                游山丸水 <span class="footer-logo-en">WANDER</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://line.me/R/ti/p/@413tqyhr" target="_blank" title="LINE" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                    <i class="fa-brands fa-line"></i>
+                </a>
+    
+                <a href="https://www.instagram.com/yo.wander_/" target="_blank" title="Instagram" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+    
+                <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank" title="Facebook" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div> 
+            <div class="footer-contact-info"> 
+                <div class="contact-row">
+                    <span>E. youwan2022@gmail.com</span>
+                    <span class="contact-divider">|</span>
+                    <span>T. +886 978 603 906</span>
+                </div> 
+                <div class="contact-row address"> 
+                    <span>宜蘭縣冬山鄉丸山一路136號</span> 
+                </div>            
+            </div>
+            <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

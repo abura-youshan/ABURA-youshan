@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABURA | 招募與合作</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* --- 頁面專屬排版 --- */
+        .hiring-hero-section {
+            padding: 60px 0;
+            background-color: #f6f5f0;
+            text-align: center;
+        }
+
+        .hiring-container {
+            width: 75%; 
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hiring-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 7 / 3; 
+            overflow: hidden;
+        }
+
+        .hiring-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover; 
+        }
+
+        .hiring-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 12%; 
+            transform: translateY(-50%);
+            color: #fff;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            letter-spacing: 0.8rem;
+            font-weight: 500;
+            pointer-events: none;
+            line-height: 1.2;
+        }
+
+         /* --- 導覽列位置修正：確保 Logo 在移除預訂按鈕後依然絕對置中 --- */
+        .navbar {
+            position: fixed;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+        }
+        .logo {
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            margin: 0 !important;
+        }
+        .menu-toggle {
+            position: absolute;
+            left: 60px;
+        }
+
+        /* --- 文化理念區塊樣式 --- */
+        .philosophy-section {
+            padding: 160px 0 60px 0; /* 預留上方導覽列高度 */
+            background-color: #f6f5f0;
+            text-align: center;
+        }
+
+        .philosophy-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .philosophy-tag {
+            font-size: 0.8rem;
+            letter-spacing: 0.3rem;
+            color: #8d7b70;
+            display: block;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .philosophy-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.5rem;
+            color: #2c2c2c;
+            margin-bottom: 40px;
+        }
+
+        .philosophy-desc {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 0;
+            padding: 0 20px;
+        }
+
+        .philosophy-desc strong {
+            color: #8d7b70;
+            font-weight: 500;
+        }
+
+        /* --- 招募職位伸縮欄樣式 --- */
+        .recruitment-section {
+            padding: 40px 0 120px 0;
+            background-color: #f6f5f0;
+        }
+
+        .recruitment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            text-align: left;
+        }
+
+        .dept-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 40px;
+            color: #2c2c2c;
+        }
+
+        .job-item {
+            border-bottom: 1px solid #e0ddd5;
+            margin-bottom: 5px;
+        }
+
+        .job-toggle { display: none; }
+
+        .job-label {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .job-label:hover { color: #8d7b70; }
+
+        .job-arrow { 
+            margin-right: 15px; 
+            font-size: 0.9rem; 
+            color: #24929c; 
+            display: inline-block;
+            transition: all 0.4s ease;
+            transform: scaleX(1); 
+        }
+
+        .job-arrow::before {
+            content: "❯";
+        }
+
+        .job-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+
+        .content-inner {
+            padding: 0 0 30px 35px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .job-toggle:checked ~ .job-content {
+            max-height: 1000px;
+            transition: max-height 1s ease-in-out;
+        }
+
+        .job-toggle:checked ~ .job-label .job-arrow {
+            transform: scaleX(1); 
+            color: #333;
+        }
+
+        .job-toggle:checked ~ .job-label .job-arrow::before {
+            content: "—"; 
+        }
+
+        /* --- RWD 響應式修正 --- */
+        @media (max-width: 1024px) {
+            .hiring-container { width: 85%; }
+            .recruitment-grid { gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .hiring-container { width: 90%; }
+            .philosophy-section { padding-top: 100px; }
+            .philosophy-title { font-size: 1.6rem; }
+            .hiring-overlay-text { left: 8%; letter-spacing: 0.4rem; }
+            .hiring-image-wrapper { aspect-ratio: 7 / 3; }
+
+            .recruitment-grid { grid-template-columns: 1fr; gap: 60px; }
+            .dept-title { font-size: 1.6rem; }
+            .job-label { font-size: 1.1rem; }
+        }
+        /* 聯繫加入區塊樣式：精確對齊上方內容左側起始點 */
+        .contact-join-section {
+            padding: 80px 0 120px 0;
+            background-color: #f6f5f0;
+        }
+
+        .contact-content-align-left {
+            /* 關鍵：不使用 margin: auto，確保對齊 container 左側邊緣 */
+            width: 100%; 
+            text-align: left;
+        }
+
+        .contact-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.3rem;
+            font-weight: 500;
+            color: #2c2c2c;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .contact-message {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-method-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .method-icon {
+            font-size: 1.3rem;
+            color: #24929c; /* 維持與招募箭頭一致的青色 */
+            width: 30px;
+            text-align: center;
+        }
+
+        .method-text a {
+            text-decoration: none;
+            font-size: 1.25rem;
+            color: #2c2c2c;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .method-text a:hover {
+            color: #8d7b70;
+        }
+
+        /* RWD 手機版對齊修正 */
+        @media (max-width: 768px) {
+            .contact-join-section {
+                padding: 60px 0 100px 0;
+            }
+            .contact-title {
+                font-size: 1.8rem;
+            }
+            .contact-message {
+                font-size: 1rem;
+                br { display: none; }
+            }
+            .method-text a {
+                font-size: 1.1rem;
+            }
+        }
+        /* 預設狀態：圖片稍微縮小並隱藏 */
+        .hiring-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.5s ease;
+        }
+
+        /* 當進入視野時觸發的動態效果 */
+        .hiring-image-wrapper img.active {
+            opacity: 1;
+            transform: scale(1.05); /* 緩慢放大進場 */
+        }
+
+        /* 額外滑鼠懸停效果 (PC端) */
+        @media (hover: hover) {
+            .hiring-image-wrapper:hover img.active {
+                transform: scale(1.1); /* 滑鼠移上去再微幅放大 */
+                transition: transform 0.8s ease;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
+        <div class="logo"><a href="index.html">ABURA</a></div>
+    </nav>
+
+    <div class="full-menu" id="full-menu">
+        <div class="menu-close" id="menu-close">×</div>
+        <ul class="menu-items">
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li>
+                <a href="javascript:void(0)" id="toggle-destinations">目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i></a>
+                <ul class="submenu" id="destination-submenu">
+                    <li class="submenu-row">
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                    </li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">關於我們 <small>ABOUT US<br>人才招募<br>品牌共創</small></a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="philosophy-section">
+            <div class="hiring-container">
+                <div class="philosophy-content">
+                    <span class="philosophy-tag">OUR PHILOSOPHY</span>
+                    <h2 class="philosophy-title">共創山海間的款待藝術</h2>
+                    <div class="philosophy-desc">
+                        <p>ABURA｜游山 的誕生，源於對土地的敬畏與對理想生活的追求。在旅宿、餐飲與休閒產業中，我們追求的不是標準化的服務，而是那份「恰到好處」的溫度。<br>我們不只是招募員工，更在尋找志同道合的夥伴，共同孵化成為未來的文旅經營者。</p>
+                        <p>我們正在尋找具備<strong>細膩心靈</strong>與<strong>專業韌性</strong>的夥伴。在這裡，工作不只是任務的達成，而是一場關於美學、自然與人際連結的集體創作。讓我們一同在冬山的稻浪、南澳的山谷與東澳的海灣間，共創嚮往的生活。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hiring-hero-section">
+            <div class="hiring-container">
+                <div class="hiring-image-wrapper">
+                    <img src="photo/東澳1.jpg" alt="ABURA游山人才招募">
+                    <div class="hiring-overlay-text">人才招募</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recruitment-section">
+            <div class="hiring-container">
+                <div class="recruitment-grid">
+                    
+                    <div class="dept-column">
+                        <h2 class="dept-title">品牌部</h2>
+                        <div class="job-item">
+                            <input type="radio" id="job-1" name="recruit1" class="job-toggle">
+                            <label for="job-1" class="job-label">
+                                <span class="job-arrow"></span> 品牌溝通師
+                            </label>
+                            <div class="job-content">
+                                <div class="content-inner">
+                                    <p><strong>1、薪資與年資</strong></p>
+                                    <p>– 32~42K TWD/月，3年以上經驗。</p>
+                                    <p><strong>2、工作目標</strong></p>
+                                    <p>– 你將加入團隊，為未來住戶提供購屋以及交屋的行政事務協助，與夥伴一起打造活著的建築，創造更自然、更智能、更耐住跟更保值的居家環境。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dept-column">
+                        <h2 class="dept-title">營造部</h2>
+                        <div class="job-item">
+                            <input type="radio" id="job-2" name="recruit1" class="job-toggle">
+                            <label for="job-2" class="job-label"><span class="job-arrow"></span> 營建工程師/土木技師 - 招募中</label>
+                            <div class="job-content"><div class="content-inner"><p>相關職務內容說明...</p></div></div>
+                        </div>
+                        <div class="job-item">
+                            <input type="radio" id="job-3" name="recruit1" class="job-toggle">
+                            <label for="job-3" class="job-label"><span class="job-arrow"></span> 機電管理工程師</label>
+                            <div class="job-content"><div class="content-inner"><p>相關職務內容說明...</p></div></div>
+                        </div>
+                        <div class="job-item">
+                            <input type="radio" id="job-4" name="recruit1" class="job-toggle">
+                            <label for="job-4" class="job-label"><span class="job-arrow"></span> 營建成控管理師</label>
+                            <div class="job-content"><div class="content-inner"><p>相關職務內容說明...</p></div></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="hiring-hero-section" style="padding-top: 20px;">
+            <div class="hiring-container">
+                <div class="hiring-image-wrapper">
+                    <img src="photo/南澳.jpg" alt="ABURA游山品牌孵化 X 商業合作">
+                    <div class="hiring-overlay-text">品牌孵化 X 商業合作</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recruitment-section">
+            <div class="hiring-container">
+                <div class="recruitment-grid">
+                    
+                    <div class="dept-column">
+                        <h2 class="dept-title">品牌孵化</h2>
+                        <div class="job-item">
+                            <input type="radio" id="job-5" name="recruit2" class="job-toggle">
+                            <label for="job-5" class="job-label"><span class="job-arrow"></span> Café 咖啡廳（ 南澳碧候＆蘇澳東澳 ）</label>
+                            <div class="job-content"><div class="content-inner"><p>歡迎各品牌提出合作企劃，共同創造在地文旅價值。</p></div></div>
+                        </div>
+                        <div class="job-item">
+                            <input type="radio" id="job-7" name="recruit2" class="job-toggle">
+                            <label for="job-7" class="job-label"><span class="job-arrow"></span> Restaurant 鍋物（ 南澳碧候 ）</label>
+                            <div class="job-content"><div class="content-inner"><p>歡迎各品牌提出合作企劃，共同創造在地文旅價值。</p></div></div>
+                        </div>
+                        <div class="job-item">
+                            <input type="radio" id="job-8" name="recruit2" class="job-toggle">
+                            <label for="job-8" class="job-label"><span class="job-arrow"></span> Restaurant 全日餐廳（ 蘇澳東澳 ）</label>
+                            <div class="job-content"><div class="content-inner"><p>歡迎各品牌提出合作企劃，共同創造在地文旅價值。</p></div></div>
+                        </div>
+                        <div class="job-item">
+                            <input type="radio" id="job-9" name="recruit2" class="job-toggle">
+                            <label for="job-9" class="job-label"><span class="job-arrow"></span> Banquet 宴會廳（ 蘇澳東澳 ）</label>
+                            <div class="job-content"><div class="content-inner"><p>歡迎各品牌提出合作企劃，共同創造在地文旅價值。</p></div></div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="dept-column">
+                        <h2 class="dept-title">商業合作</h2>
+                        <div class="job-item">
+                            <input type="radio" id="job-6" name="recruit2" class="job-toggle">
+                            <label for="job-6" class="job-label"><span class="job-arrow"></span> 工務行政總務</label>
+                            <div class="job-content"><div class="content-inner"><p>負責工務部文件管理、採購及相關行政支援工作。</p></div></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="contact-join-section">
+            <div class="hiring-container">
+                <div class="contact-content-align-left">
+                    <h2 class="contact-title">聯繫加入ABURA</h2>
+            
+                    <p class="contact-message">
+                        如果你也嚮往這樣的生活，帶著你的專業與熱忱，一同在山海間共創款待藝術。<br>
+                        歡迎將作品集與自我介紹寄送給我們：
+                    </p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method-item">
+                            <div class="method-icon"><i class="fa-regular fa-envelope"></i></div>
+                            <div class="method-text">
+                                <a href="mailto:aburayoushan@gmail.com">aburayoushan@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-method-item">
+                            <div class="method-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="method-text">
+                                <a href="tel:+886911957936">0911-957-936</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-center-content">
+            <div class="footer-logo">ABURA<span class="footer-logo-en">Group</span></div>
+            <div class="footer-contact-info">
+                <div class="contact-row">
+                    <span>E. aburayoushan@gmail.com</span>
+                    <span class="contact-divider">|</span>
+                    <span>T. +886 911 957 936</span>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="https://line.me/R/ti/p/@413tqyhr" target="_blank"><i class="fa-brands fa-line"></i></a>
+                <a href="https://www.instagram.com/yo.wander_/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-copyright">© 2026 ABURA GROUP S.A.R.L.</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.2 // 當區塊出現 20% 時觸發
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            // 監測所有招募區塊的圖片
+            const animatedImages = document.querySelectorAll('.hiring-image-wrapper img');
+            animatedImages.forEach(img => observer.observe(img));
+        });
+    </script>
+</body>
+</html>
