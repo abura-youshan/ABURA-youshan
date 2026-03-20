@@ -336,13 +336,27 @@ html { scroll-behavior: smooth; }
 .job-toggle { display: none; }
 .job-label { display: flex; align-items: center; padding: 20px 0; cursor: pointer; font-size: 1.2rem; font-weight: 500; color: #333; transition: color 0.3s; }
 .job-label:hover { color: #8d7b70; }
-.job-arrow { margin-right: 15px; font-size: 0.9rem; color: #24929c; display: inline-block; transition: all 0.4s ease; transform: scaleX(1); }
+.job-arrow { margin-right: 15px; font-size: 0.9rem; color: #24929c; display: inline-block; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: scaleX(1); }
 .job-arrow::before { content: "❯"; }
-.job-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); }
+
+/* 優化後的絲滑動畫邏輯 */
+.job-content { 
+    max-height: 0; 
+    overflow: hidden; 
+    /* 縮短時間至 0.3s，使用自定義貝茲曲線讓收回起始動作更快 */
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+}
 .content-inner { padding: 0 0 30px 35px; font-size: 0.95rem; line-height: 1.8; color: #666; }
-.job-toggle:checked ~ .job-content { max-height: 1000px; transition: max-height 1s ease-in-out; }
-.job-toggle:checked ~ .job-label .job-arrow { transform: scaleX(1); color: #333; }
+
+/* 當 radio 被選中時 (展開) */
+.job-toggle:checked ~ .job-content {
+    /* 數值設得接近內容高度會讓收回更即時絲滑 */
+    max-height: 650px; 
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.job-toggle:checked + .job-label .job-arrow {transform: rotate(90deg);}
 .job-toggle:checked ~ .job-label .job-arrow::before { content: "—"; }
+
 @media (max-width: 1024px) { .hiring-container { width: 85%; } .recruitment-grid { gap: 40px; } }
 @media (max-width: 768px) {
     .hiring-container { width: 90%; } .philosophy-section { padding-top: 100px; } .philosophy-title { font-size: 1.6rem; }
@@ -365,6 +379,23 @@ html { scroll-behavior: smooth; }
 .hiring-image-wrapper img { opacity: 0; transform: scale(0.95); transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.5s ease; }
 .hiring-image-wrapper img.active { opacity: 1; transform: scale(1.05); }
 @media (hover: hover) { .hiring-image-wrapper:hover img.active { transform: scale(1.1); transition: transform 0.8s ease; } }
+
+/* 福利區塊樣式 */
+.abura-benefits {font-family: "Noto Serif TC", serif; background-color: #f6f5f0; padding: 60px 0; color: #444; max-width: 65%; margin: 0 auto; }
+.page-title {font-size: 36px; letter-spacing: 4px; margin-bottom: 60px; font-weight: 400;}
+.benefit-item {display: flex; align-items: center; padding: 25px 0; border-bottom: 1px solid #eaeaea; transition: background-color 0.3s ease; cursor: pointer; }
+.symbol {color: #d1d1d1; font-size: 16px; font-weight: 300; margin-right: 25px; transition: color 0.3s ease;}
+.content {font-size: 18px; letter-spacing: 0.5px; line-height: 1.5;}
+.benefit-item:hover {background-color: rgba(0, 0, 0, 0.015); }
+.benefit-item:hover .symbol {color: #455a64; }
+
+@media (max-width: 768px) {
+    .abura-benefits {max-width: 90%; padding: 40px 0;}
+    .page-title {font-size: 28px; margin-bottom: 30px;}
+    .content {font-size: 16px;}
+    .symbol {margin-right: 15px; font-size: 14px;}
+}
+@media (max-width: 375px) { .content {font-size: 15px;} }
 
 /* --- 2-7. About.html 提取內容 (含聯絡資訊 CSS) --- */
 .footer-split-content { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1100px; width: 90%; margin: 0 auto 0 5%; text-align: left; padding-bottom: 40px; flex-wrap: wrap; gap: 30px; }
