@@ -33,58 +33,13 @@ html { scroll-behavior: smooth; }
 .submenu-icon { font-size: 0.8rem; margin-left: 10px; transition: 0.3s; }
 
 /* --- 目的地：新增客房連結並排樣式 (位置上移精確版) --- */
-.submenu-row {
-    position: relative;
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start;
-    width: 100%;
-}
-.submenu-row > a:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    line-height: 1; 
-}
-.room-link {
-    position: absolute;
-    left: calc(50% + 140px); 
-    top: 0.75px; 
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    text-wrap: nowrap;
-    font-size: 0.85rem !important; 
-    color: #8d7b70 !important;   
-    text-decoration: none;
-    font-family: 'Noto Serif TC', serif;
-    transition: all 0.3s ease;
-    line-height: 1;
-}
-.room-link::before {
-    content: "\f105"; 
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    position: absolute;
-    left: -25px; 
-    font-size: 0.75rem;
-    transform: translateY(8px); 
-}
-.submenu-row small, .room-link small {
-    font-size: 0.6rem !important;
-    color: #bbb !important;
-    display: block;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
+.submenu-row {position: relative;display: flex;justify-content: center; align-items: flex-start;width: 100%;}
+.submenu-row > a:first-child {display: flex;flex-direction: column;align-items: center;text-align: center;line-height: 1; }
+.room-link {position: absolute;left: calc(50% + 140px); top: 0.75px; display: flex;flex-direction: column; align-items: center;text-wrap: nowrap;font-size: 0.85rem !important; color: #8d7b70 !important;   text-decoration: none;font-family: 'Noto Serif TC', serif;transition: all 0.3s ease;line-height: 1;}
+.room-link::before {content: "\f105"; font-family: "Font Awesome 6 Free";font-weight: 900;position: absolute;left: -25px; font-size: 0.75rem;transform: translateY(8px); }
+.submenu-row small, .room-link small {font-size: 0.6rem !important;color: #bbb !important;display: block;letter-spacing: 1.5px;text-transform: uppercase;}
 .submenu-row small { margin-top: 18px !important; }
-.room-link small {
-    margin-top: 15px !important; 
-    text-align: center;
-    padding-left: 0;
-    width: 100%;
-}
+.room-link small {margin-top: 15px !important; text-align: center;padding-left: 0;width: 100%;}
 .menu-items a:hover, .submenu a:hover, .room-link:hover { color: #bd9974 !important; }
 
 /* --- 手機版 RWD：向下箭頭定位優化與連結簡化 --- */
@@ -340,20 +295,14 @@ html { scroll-behavior: smooth; }
 .job-arrow::before { content: "❯"; }
 
 /* 優化後的絲滑動畫邏輯 */
-.job-content { 
-    max-height: 0; 
-    overflow: hidden; 
+.job-content { max-height: 0; overflow: hidden; 
     /* 縮短時間至 0.3s，使用自定義貝茲曲線讓收回起始動作更快 */
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-}
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 .content-inner { padding: 0 0 30px 35px; font-size: 0.95rem; line-height: 1.8; color: #666; }
 
 /* 當 radio 被選中時 (展開) */
-.job-toggle:checked ~ .job-content {
-    /* 數值設得接近內容高度會讓收回更即時絲滑 */
-    max-height: 650px; 
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.job-toggle:checked ~ .job-content {/* 數值設得接近內容高度會讓收回更即時絲滑 */max-height: 650px; 
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);}
 .job-toggle:checked + .job-label .job-arrow {transform: rotate(90deg);}
 .job-toggle:checked ~ .job-label .job-arrow::before { content: "—"; }
 
@@ -418,27 +367,60 @@ html { scroll-behavior: smooth; }
 }
 
 /* --- 修正主導覽預訂文字置右 --- */
-.navbar {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-}
-
-.reserve-link {
-    margin-left: auto !important;
-}
+.navbar {display: flex !important;justify-content: space-between !important;align-items: center !important;}
+.reserve-link {margin-left: auto !important;}
 
 /* 針對有特殊 Logo 置中處理的頁面，確保預訂按鈕依然在右側 */
 .destination-nav .reserve-link,
-.scrolled .reserve-link {
-    position: absolute !important;
-    right: 60px !important;
-}
+.scrolled .reserve-link {position: absolute !important;right: 60px !important;}
 
 @media (max-width: 768px) {
     .destination-nav .reserve-link,
-    .scrolled .reserve-link {
-        right: 20px !important;
-    }
+    .scrolled .reserve-link {right: 20px !important;}}
+
+
+
+/* ============================================================
+   3. 法律條款頁面與頁尾連結整合 (與 About.html 同步)
+   ============================================================ */
+
+/* 法律內容容器佈局：同步 About.html 寬度與偏移量 */
+.legal-content-wrap { max-width: 1100px; width: 90%; margin: 0 auto 0 5%; text-align: left; }
+
+/* 法律章節樣式：與 About.html 字體與顏色一致 */
+.legal-section { margin-bottom: 80px; }
+.legal-section h2 { font-size: 1.8rem; color: #2c2c2c; margin-bottom: 30px; border-bottom: 1px solid #e0ddd5; padding-bottom: 15px; font-weight: 300; letter-spacing: 2px; font-family: 'Playfair Display', 'Noto Serif TC', serif; }
+.legal-section h3 { font-size: 1.1rem; color: #2c2c2c; margin: 40px 0 15px 0; font-weight: 500; letter-spacing: 1px; }
+.legal-section p, .legal-section li { color: #555; line-height: 2.2; font-size: 0.95rem; margin-bottom: 15px; }
+
+/* 列表樣式：使用品牌深褐色 */
+.legal-section ul { padding-left: 20px; list-style-type: none; }
+.legal-section ul li::before { content: "•"; color: #8d7b70; display: inline-block; width: 1em; margin-left: -1em; font-weight: bold; }
+
+/* 頁內連結樣式 */
+.legal-section a { color: #24929c; text-decoration: none; border-bottom: 1px solid rgba(36, 146, 156, 0.3); transition: 0.3s; }
+.legal-section a:hover { border-bottom: 1px solid #0f7983; }
+
+/* 日期樣式 */
+.last-update { font-size: 0.85rem; color: #888; text-align: left; margin-bottom: 50px; letter-spacing: 1px; }
+
+/* 頁尾法律連結顏色：與 About.html 版權灰色統一 */
+.footer-legal-link { color: #999; text-decoration: none; margin-left: 8px; transition: color 0.3s ease;white-space: nowrap; }
+.footer-legal-link:hover { color: #8d7b70; }
+.footer-divider { color: #e0ddd5; margin-left: 8px; }
+
+/* --- 修改/新增 RWD：處理手機版換行與邊距對齊 --- */
+@media (max-width: 1024px) { 
+    .legal-content-wrap, .footer-copyright-wrap { width: 90%; margin: 0 auto 0 5% !important; } /* 強制維持 5% 靠左偏移 */
+}
+@media (max-width: 768px) {
+    .footer-copyright { justify-content: flex-start; }
+    .footer-center-content .footer-copyright { justify-content: center; }
+}
+@media (max-width: 480px) {
+    .footer-divider { display: none; } /* 極窄螢幕隱藏分隔線，讓連結整塊掉到下一行 */
+    .footer-legal-link { margin-left: 0; width: 100%; } 
 }
 
+/* 移除自動電話連結樣式並同步規格 */
+a[href^="tel"] { color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; letter-spacing: inherit !important; }
