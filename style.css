@@ -19,7 +19,10 @@ html { scroll-behavior: smooth; }
 .btn-reserve { text-decoration: none; color: #333; border: 1px solid #333; padding: 10px 25px; font-size: 0.8rem; letter-spacing: 2px; }
 
 /* --- 漢堡選單文字格式 --- */
-.full-menu { position: fixed; inset: 0; background: #f6f5f0; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; opacity: 0; visibility: hidden; transition: 0.6s ease; }
+.full-menu { position: fixed; inset: 0; background: #f6f5f0; z-index: 10000; display: flex; flex-direction: column;  align-items: center; text-align: center; opacity: 0; visibility: hidden; transition: 0.6s ease;overflow-y: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; padding-top: 100px; padding-bottom: 60px;}
+.full-menu.active { opacity: 1; visibility: visible; }
+/* [新增] 當選單開啟時，禁止底層網頁捲動 */
+body.menu-open {overflow: hidden;height: 100%;}
 .full-menu.active { opacity: 1; visibility: visible; }
 .menu-close { position: absolute; top: 40px; left: 60px; font-size: 2.5rem; cursor: pointer; }
 .menu-items { list-style: none; }
@@ -483,7 +486,7 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
     /* 1. 預設隱藏箭頭（透明度 0） */
     .prev-btn, .next-btn {
         opacity: 0;
-        transition: opacity 0.5s ease; /* 增加淡入動畫 */
+        transition: opacity 0.3s ease; /* 增加淡入動畫 */
         pointer-events: none; /* 隱藏時不可點擊 */
     }
 

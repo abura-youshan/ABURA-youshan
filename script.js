@@ -29,7 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'auto';
         };
     }
-
+    // [建議新增]：點擊選單內的任何連結時，自動關閉選單並恢復捲軸
+    // 避免使用者跳轉後，頁面還是鎖死不能滑
+    const allMenuLinks = fullMenu.querySelectorAll('a');
+    allMenuLinks.forEach(link => {
+        link.onclick = () => {
+            fullMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+    });
     // 3. 目的地子選單切換
     if (toggleDest && destSubmenu) {
         toggleDest.onclick = (e) => {
@@ -126,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const observerOptions = {
             root: null,
             // 當卡片有 60% 出現在畫面中時觸發
-            threshold: 0.6 
+            threshold: 0.4 
         };
 
         const observer = new IntersectionObserver((entries) => {
