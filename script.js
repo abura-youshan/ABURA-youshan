@@ -117,3 +117,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+// 6. 手機/平板滑動自動顯示左右箭頭
+    if (window.innerWidth <= 1024) {
+        const roomCards = document.querySelectorAll('.room-card');
+        
+        const observerOptions = {
+            root: null,
+            // 當卡片有 60% 出現在畫面中時觸發
+            threshold: 0.6 
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 滑動到該卡片，加上類別顯示箭頭
+                    entry.target.classList.add('is-focused');
+                } else {
+                    // 滑離該卡片，移除類別隱藏箭頭
+                    entry.target.classList.remove('is-focused');
+                }
+            });
+        }, observerOptions);
+
+        roomCards.forEach(card => observer.observe(card));
+    }

@@ -231,7 +231,17 @@ html { scroll-behavior: smooth; }
 .photo-track { display: flex; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); height: 100%; width: 100%; }
 .photo-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
 .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; opacity: 0; transition: 0.3s; }
-.room-card:hover .slider-btn { opacity: 1; background: rgba(0,0,0,0.6); }
+/* 修改原本的設定，增加 .is-focused 觸發條件 */
+.room-card:hover .slider-btn,
+.room-card.is-focused .slider-btn { opacity: 1; background: rgba(0,0,0,0.6); pointer-events: auto; /* 確保顯示時可以點擊 */}
+/* 針對行動裝置的額外優化 */
+@media (max-width: 1024px) {
+    .slider-btn {
+        opacity: 0;
+        transition: opacity 0.4s ease; /* 讓箭頭出現時有淡入感 */
+        pointer-events: none; /* 隱藏時防止誤觸 */
+    }
+}
 .prev-btn { left: 15px; } .next-btn { right: 15px; }
 .room-card h3 { padding: 0 25px; font-size: 1.5rem; font-weight: 400; margin-bottom: 15px; color: #333; }
 .room-amenities { list-style: none; padding: 0 25px; margin: 0; }
@@ -301,7 +311,7 @@ html { scroll-behavior: smooth; }
 .content-inner { padding: 0 0 30px 35px; font-size: 0.95rem; line-height: 1.8; color: #666; }
 
 /* 當 radio 被選中時 (展開) */
-.job-toggle:checked ~ .job-content {/* 數值設得接近內容高度會讓收回更即時絲滑 */max-height: 650px; 
+.job-toggle:checked ~ .job-content {/* 數值設得接近內容高度會讓收回更即時絲滑 */max-height: 1200px; 
     transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);}
 .job-toggle:checked + .job-label .job-arrow {transform: rotate(90deg);}
 .job-toggle:checked ~ .job-label .job-arrow::before { content: "—"; }
@@ -347,16 +357,16 @@ html { scroll-behavior: smooth; }
 @media (max-width: 375px) { .content {font-size: 15px;} }
 
 /* --- 2-7. About.html 提取內容 (含聯絡資訊 CSS) --- */
-.footer-split-content { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1100px; width: 90%; margin: 0 auto 0 5%; text-align: left; padding-bottom: 40px; flex-wrap: wrap; gap: 30px; }
+.footer-split-content { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1100px; width: 90%; margin: 0 auto !important; text-align: left; padding-bottom: 40px; flex-wrap: wrap; gap: 30px; }
 .footer-left-info { flex: 1; min-width: 280px; }
 .footer-left-info .footer-logo { text-align: left !important; margin: 0 !important; padding: 0 !important; display: block; }
 .footer-contact-info-vertical { margin: 20px 0; display: flex; flex-direction: column; gap: 12px; }
 .contact-item { font-size: 0.95rem; letter-spacing: 1px; color: #555; word-break: break-all; }
 .footer-right-join { flex: 1; text-align: right; min-width: 200px; font-family: 'Noto Serif TC', serif; }
-.join-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 15px; color: #2c2c2c; letter-spacing: 3px; }
-.join-item { font-size: 0.95rem; line-height: 2; color: #555; display: block; letter-spacing: 1px; text-decoration: none; transition: color 0.3s ease; }
+.join-title { font-size: 1.6rem; font-weight: 500; margin-bottom: 15px; color: #2c2c2c; letter-spacing: 3px; }
+.join-item { font-size: 1.0rem; line-height: 2; color: #555; display: block; letter-spacing: 1px; text-decoration: none; transition: color 0.3s ease; }
 .join-item:hover { color: #8d7b70; }
-.footer-copyright-wrap { max-width: 1100px; width: 90%; margin: 0 auto 0 5%; border-top: 1px solid #e0ddd5; padding-top: 25px; text-align: left; }
+.footer-copyright-wrap { max-width: 1100px; width: 90%; margin: 0 auto !important; border-top: 1px solid #e0ddd5; padding-top: 25px; text-align: left; }
 .footer-copyright { color: #999; font-size: 0.8rem; letter-spacing: 1px; }
 @media (max-width: 1024px) { .footer-split-content, .footer-copyright-wrap { margin: 0 auto; width: 90%; } }
 @media (max-width: 768px) {
@@ -424,3 +434,63 @@ html { scroll-behavior: smooth; }
 
 /* 移除自動電話連結樣式並同步規格 */
 a[href^="tel"] { color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; letter-spacing: inherit !important; }
+
+
+/* --- 僅針對首頁的新增三欄排版 --- */
+.home-page .footer-new-columns {display: flex;gap: 60px; justify-content: flex-end; /* 桌機版依然保持靠右 */flex-wrap: wrap;}
+/* 每個區塊的預設設定 (桌機版) */
+.home-page .footer-column-item {text-align: right;min-width: fit-content;flex-shrink: 0;}
+.home-page .footer-column-item .join-title {font-size: 1.6rem;font-family: 'Noto Serif TC', serif;font-weight: 500;margin-bottom: 15px;color: #2c2c2c;letter-spacing: 3px;white-space: nowrap; }
+.home-page .footer-column-item .join-item {font-size: 1.0rem;line-height: 2;color: #555;display: block;letter-spacing: 1px;text-decoration: none;white-space: nowrap; }
+/* --- 修正全螢幕左右邊距對稱 --- */
+.home-page .footer-split-content,
+.home-page .footer-copyright-wrap {max-width: 1200px; /* 這裡的數值可依需求微調，建議與你網頁主體寬度一致 */width: 90%;margin: 0 auto !important; /* 關鍵：強制水平置中，抵銷原本的 margin-left: 5% */padding-left: 0;padding-right: 0;}
+/* --- 隱藏首頁原本重複的右側區塊 --- */
+.home-page .footer-right-join {display: none !important;}
+/* ============================================================
+   關鍵修改：當畫面縮小向下排版時 (對標附圖排版)
+   ============================================================ */
+@media (max-width: 1024px) {
+    .home-page .footer-new-columns {
+        flex-direction: column;    /* 強制改為垂直排列 */
+        gap: 30px;                 /* 區塊與區塊之間的間距 */
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 40px;          /* 增加與上方 Logo 區塊的距離 */
+    }
+
+    .home-page .footer-column-item {
+        text-align: left;          /* 關鍵：改為靠左對齊，如附圖 */
+        width: 100%;
+    }
+
+    .home-page .footer-column-item .join-title {
+        text-align: left;          /* 標題靠左 */
+        margin-bottom: 20px;
+    }
+
+    .home-page .footer-column-item .join-item {
+        text-align: left;          /* 內容小字靠左 */
+    }
+}
+
+
+
+/* 假設你的左右箭頭類別分別為 .prev-btn 和 .next-btn */
+/* 以及照片容器類別為 .room-photo-container */
+
+@media (max-width: 1024px) {
+    /* 1. 預設隱藏箭頭（透明度 0） */
+    .prev-btn, .next-btn {
+        opacity: 0;
+        transition: opacity 0.5s ease; /* 增加淡入動畫 */
+        pointer-events: none; /* 隱藏時不可點擊 */
+    }
+
+    /* 2. 當 JavaScript 偵測到容器進入視窗，加上 .is-focused 類別後顯示 */
+    .room-photo-container.is-focused .prev-btn,
+    .room-photo-container.is-focused .next-btn {
+        opacity: 1;
+        pointer-events: auto; /* 顯示後恢復點擊功能 */
+    }
+}
