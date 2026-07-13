@@ -127,27 +127,46 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// 6. 手機/平板滑動自動顯示左右箭頭
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (維持您原本的 1-5 點邏輯) ...
+
+    // 6. 手機/平板滑動自動顯示左右箭頭 (移入此處)
     if (window.innerWidth <= 1024) {
         const roomCards = document.querySelectorAll('.room-card');
-        
-        const observerOptions = {
-            root: null,
-            // 當卡片有 60% 出現在畫面中時觸發
-            threshold: 0.4 
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // 滑動到該卡片，加上類別顯示箭頭
-                    entry.target.classList.add('is-focused');
-                } else {
-                    // 滑離該卡片，移除類別隱藏箭頭
-                    entry.target.classList.remove('is-focused');
-                }
+                entry.target.classList.toggle('is-focused', entry.isIntersecting);
             });
-        }, observerOptions);
-
+        }, { threshold: 0.4 });
         roomCards.forEach(card => observer.observe(card));
     }
+
+    // 7. [優化] 子導覽列平滑滾動修正
+    document.querySelectorAll('.sub-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // 檢查是否包含 #，且目標元素存在
+            if (href.includes('#')) {
+                const targetId = href.substring(href.indexOf('#'));
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault(); // 阻止瀏覽器重載
+                    
+                    const headerOffset = 130; 
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // 更新網址列
+                    history.pushState(null, null, targetId);
+                }
+            }
+        });
+    });
+});
