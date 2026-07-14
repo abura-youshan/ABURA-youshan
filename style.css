@@ -1,14 +1,10 @@
 html { scroll-behavior: smooth; scroll-padding-top: 130px; /* 重要：這能取代 JS 計算，自動避開導覽列 */}
-@font-face {font-family: 'LINESeedTW';src: url('fonts/LINESeedTW_OTF_Th.woff2') format('woff2');font-weight: 300; /* 對應 Thin */font-style: normal;font-display: swap;}
-@font-face {font-family: 'LINESeedTW';src: url('fonts/LINESeedTW_OTF_Rg.woff2') format('woff2');font-weight: 400; /* 對應 Regular */font-style: normal;font-display: swap;}
-@font-face {font-family: 'LINESeedTW';src: url('fonts/LINESeedTW_OTF_Bd.woff2') format('woff2');font-weight: 700; /* 對應 Bold */font-style: normal;font-display: swap;}
-@font-face {font-family: 'LINESeedTW';src: url('fonts/LINESeedTW_OTF_Eb.woff2') format('woff2');font-weight: 900; /* 對應 Extra Bold */font-style: normal;font-display: swap;}
 /* ============================================================
    1. 原始 style.css 基礎設定
    ============================================================ */
 /* --- 基礎設定 --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { /* 這裡將字體優先級設為您的新字體，後方保留系統預設字體作為備援 */font-family: 'LINESeedTW', 'Noto Sans TC', sans-serif; background-color: #f6f5f0; color: #2c2c2c; line-height: 1.6; }
+body { /* 這裡將字體優先級設為您的新字體，後方保留系統預設字體作為備援 */font-family:'Noto Serif TC', sans-serif; background-color: #f6f5f0; color: #2c2c2c; line-height: 1.6; }
 html { scroll-behavior: smooth; }
 /* 修正跳轉偏移：主導覽(80px) + 子導覽 + 緩衝 */
 [id] { scroll-margin-top: 130px; }
@@ -17,11 +13,46 @@ html { scroll-behavior: smooth; }
 /* --- 導覽列一致化 --- */
 .navbar { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 60px; z-index: 3000; transition: 0.5s; background: transparent; }
 .navbar.scrolled, .destination-nav { background: #f6f5f0 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid #e0ddd5; }
-/* --- 因擋住子導列修改後的主導列 Logo 區塊樣式 --- */
-.logo { flex: 1; display: flex; justify-content: center; align-items: center;height: 80px;      /* 確保容器高度與導覽列一致 */overflow: hidden;  /* 防止溢出遮擋下方內容 */}
-.logo a { display: flex; align-items: center; height: 100%; }
-.logo img {display: block;width: 280px;      /* 指定您要的寬度 */height: auto;      /* 維持長寬比 */max-height: 180px;  /* 強制限制高度，避免撐開導覽列或遮擋下方 */object-fit: contain; transition: opacity 0.3s ease;}
-.logo img:hover {opacity: 0.8;}
+
+/* --- 最上方Logo電腦版、手機版修正版：正確對應顯示邏輯 --- */
+.logo { 
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 80px;      
+    overflow: hidden;  
+}
+
+.logo a { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    height: 80px;      
+    width: 100%;
+}
+
+/* 電腦版 Logo (顯示完整版：ABURA · 游山) */
+.logo-desktop { 
+    display: block;   /* 電腦版預設顯示 */
+    width: 480px;     
+    height: 160px;     /* 高度建議設為 80px 對齊容器 */
+    object-fit: contain; 
+}
+
+/* 手機版 Logo (顯示簡潔版：ABURA) */
+.logo-mobile { 
+    display: none;    /* 手機版預設隱藏 */
+    width: 200px;     
+    height: 150px; 
+    object-fit: contain; 
+}
+
+/* 當螢幕寬度小於 768px 時切換 */
+@media (max-width: 768px) {
+    .logo-desktop { display: none; }  /* 手機版隱藏完整版 */
+    .logo-mobile { display: block; }   /* 手機版顯示簡潔版 */
+}
 /* ---------------------------------- */
 
 .bar { width: 28px; height: 1px; background: #333; display: block; margin: 8px 0; }
@@ -35,7 +66,7 @@ body.menu-open {overflow: hidden;height: 100%;}
 .menu-close { position: absolute; top: 40px; left: 60px; font-size: 2.5rem; cursor: pointer; }
 .menu-items { list-style: none; }
 .menu-items li { margin-bottom: 25px; }
-.menu-items a { text-decoration: none; color: #333; font-size: 1.8rem; letter-spacing: 2px; font-family: 'LINESeedTW', serif; }
+.menu-items a { text-decoration: none; color: #333; font-size: 1.8rem; letter-spacing: 2px; font-family: 'Noto Serif TC', serif; }
 .menu-items small { display: block; font-size: 0.7rem; color: #999; text-transform: uppercase; margin-top: 5px; }
 .submenu { display: none; list-style: none; padding-top: 20px; }
 .submenu.active { display: block; }
@@ -505,3 +536,5 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
         pointer-events: auto; /* 顯示後恢復點擊功能 */
     }
 }
+
+
