@@ -4,21 +4,19 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>東澳 · 游山海灣 | ABURA</title>
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="style.css">
+    <!-- Step A: 修正資源引用 (往上一層) -->
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    
 </head>
 <body class="destination-detail-page">
+    <!-- Step B: 修正導航與連結 (指向根目錄) -->
     <nav class="navbar destination-nav" id="main-nav">
         <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
         <div class="logo">
-            <a href="index.html">
-                <!-- class="logo-desktop" 對應完整版 (abura-logo-2.svg) -->
-                <img src="photo/abura-logo-2.svg" alt="ABURA" class="logo-desktop">
-        
-                <!-- class="logo-mobile" 對應簡潔版 (abura-logo.svg) -->
-                <img src="photo/abura-logo.svg" alt="ABURA" class="logo-mobile">
+            <a href="/">
+                <img src="../photo/abura-logo-2.svg" alt="ABURA" class="logo-desktop">
+                <img src="../photo/abura-logo.svg" alt="ABURA" class="logo-mobile">
             </a>
         </div>
     </nav>
@@ -26,20 +24,20 @@
     <div class="full-menu" id="full-menu">
         <div class="menu-close" id="menu-close">×</div>
         <ul class="menu-items">
-            <li><a href="index.html">ABURA <small>HOME</small></a></li>
+            <li><a href="/">ABURA <small>HOME</small></a></li>
             <li><a href="javascript:void(0)" id="toggle-destinations">目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i></a>
                 <ul class="submenu" id="destination-submenu">
                     <li class="submenu-row">
-                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
-                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
+                        <a href="/wander/">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="/rooms-list/" class="room-link">住宿房型 <small>ROOMS</small></a>
                     </li>
-                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
-                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                    <li><a href="/gulu/">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="/hione/">東澳 · 游山海灣 <small>HIONE</small></a></li>
                 </ul>
             </li>
-            <li><a href="index.html">四季體驗 <small>Experiences | COOM SOON...</small></a></li>
-            <li><a href="hiring.html">品牌共創 <small>Venture</small></a></li>
-            <li><a href="about.html">關於我們 <small>ABOUT US</small></a></li>
+            <li><a href="/">四季體驗 <small>Experiences | COOM SOON...</small></a></li>
+            <li><a href="/hiring/">品牌共創 <small>Venture</small></a></li>
+            <li><a href="/about/">關於我們 <small>ABOUT US</small></a></li>
         </ul>
     </div>
 
@@ -50,7 +48,7 @@
         </ul>
     </nav>
 
-    <section><img src="photo/東澳俯視圖生成.webp" style="width:100%; display:block;" alt="宜蘭東澳海邊住宿"></section>
+    <section><img src="../photo/東澳俯視圖生成.webp" style="width:100%; display:block;" alt="宜蘭東澳海邊住宿"></section>
 
     <article class="detail-content" style="background-color: #4a5a6a; color: #f6f5f0; padding: 100px 20px;">
         <div class="content-wrap">
@@ -84,7 +82,7 @@
                     <div class="da-card-content">
                         <span class="da-tag">Epicurean Gala</span>
                         <h3 class="da-item-name">海際盛筵</h3>
-                        <p class="da-description">將蔚藍海際化作餐桌前的永恆背景，私人主廚預約制席位，對外揭開在地漁獵的風味序幕，於沙灘見證誓言，在星光下籌辦一場與海共鳴的極致慶典</p>
+                        <p class="da-description">將蔚藍海際化作餐桌前的永恆背景，私人主廚預約制席位，對外揭開在地漁獵的風味序幕，於沙灘見證誓言，在星光下籌辦一場與海共鳴的極致慶典。</p>
                     </div>
                 </div>
             
@@ -127,15 +125,16 @@
         </div>
     </section>
     
+    <!-- Step C: 調整頁尾 -->
     <footer class="main-footer">
         <div class="footer-center-content">
             <div class="footer-logo">
                 游山海灣 <span class="footer-logo-en">HIONE</span>
             </div>
             <div class="footer-social">
-                <a href="#"><i class="fa-brands fa-line"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://line.me/R/ti/p/@632kxjjw"><i class="fa-brands fa-line"></i></a>
+                <a href="https://www.instagram.com/abura_youshan/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61587732642115"><i class="fa-brands fa-facebook-f"></i></a>
             </div>
             <div class="footer-contact-info">
                 <div class="contact-row">
@@ -147,11 +146,10 @@
             <div class="footer-copyright">
                 © 2026 ABURA GROUP S.A.R.L. 
                 <span class="footer-divider">|</span> 
-                <a href="legal.html" class="footer-legal-link">隱私權與服務條款</a>
+                <a href="/legal/" class="footer-legal-link">隱私權與服務條款</a>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
-
