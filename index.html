@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>游山ABURA | 寧靜之美</title>
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="style.css">
@@ -14,8 +13,11 @@
     <nav class="navbar" id="main-nav">
         <div class="menu-toggle" id="menu-open"><span class="bar"></span><span class="bar"></span></div>
         <div class="logo">
-            <a href="/">
+            <a href="index.html">
+                <!-- class="logo-desktop" 對應完整版 (abura-logo-2.svg) -->
                 <img src="photo/abura-logo-2.svg" alt="ABURA" class="logo-desktop">
+        
+                <!-- class="logo-mobile" 對應簡潔版 (abura-logo.svg) -->
                 <img src="photo/abura-logo.svg" alt="ABURA" class="logo-mobile">
             </a>
         </div>
@@ -24,23 +26,23 @@
     <div class="full-menu" id="full-menu">
         <div class="menu-close" id="menu-close">×</div>
         <ul class="menu-items">
-            <li><a href="/">ABURA <small>HOME</small></a></li>
+            <li><a href="index.html">ABURA <small>HOME</small></a></li>
             <li>
                 <a href="javascript:void(0)" id="toggle-destinations">
                     目的地 <small>DESTINATIONS</small> <i class="fa-solid fa-chevron-down submenu-icon"></i>
                 </a>
                 <ul class="submenu" id="destination-submenu">
                     <li class="submenu-row">
-                        <a href="/wander/">冬山 · 游山丸水 <small>WANDER</small></a>
-                        <a href="/rooms-list/">住宿房型 <small>ROOMS</small></a>
+                        <a href="wander.html">冬山 · 游山丸水 <small>WANDER</small></a>
+                        <a href="rooms-list.html" class="room-link">住宿房型 <small>ROOMS</small></a>
                     </li>
-                    <li><a href="/gulu/">南澳 · 游山谷露 <small>GULU</small></a></li>
-                    <li><a href="/hione/">東澳 · 游山海灣 <small>HIONE</small></a></li>
+                    <li><a href="gulu.html">南澳 · 游山谷露 <small>GULU</small></a></li>
+                    <li><a href="hione.html">東澳 · 游山海灣 <small>HIONE</small></a></li>
                 </ul>
             </li>
-            <li><a href="/">四季體驗 <small>Experiences | COOM SOON...</small></a></li>
-            <li><a href="/hiring/">品牌共創 <small>Venture</small></a></li>
-            <li><a href="/about/">關於我們 <small>ABOUT US</small></a></li>
+            <li><a href="index.html">四季體驗 <small>Experiences | COOM SOON...</small></a></li>
+            <li><a href="hiring.html">品牌共創 <small>Venture</small></a></li>
+            <li><a href="about.html">關於我們 <small>ABOUT US</small></a></li>
         </ul>
     </div>
 
@@ -60,14 +62,10 @@
                         <strong>ABURA</strong>，源自於對「游」的深情稱呼。在日語中，ABURA 原意為「<strong>油（あぶら）</strong>」，承載著質樸而純粹的韻味；而在台灣的語境下，「阿不拉」（あぶら）與游姓有著極深的淵源。
                     </p>
                     <p>
-                        賦予了品牌一種跨越邊界的親切感，完美連結了「游」字背後所代表的流動、探索與悠遊之意。
+                        賦予了品牌一種跨越邊界的親切感，也完美連結了「游」字背後所代表的流動、探索與悠遊之意。
                     </p>
                     <p>
-HEAD
-                        更是一種生活哲學。我們致力於為每一位嚮往自由的靈魂，打造最純粹的戶外生活體驗。無論是隱匿於深林峽谷間的靜謐棲息，或是奔向湛藍海灣的浪潮探索，我們要做的事，就是打破日常的邊界，引領你在山與海的節奏中，找回那份隨心所欲、悠然自得的「游」意。
-
-                        我們致力於為每一位嚮往自由的靈魂，打造最純粹的戶外生活體驗。無論是隱匿於深林峽谷間的靜謐棲息，或是奔向湛藍海灣的浪潮探索，我們要做的事，就是打破日常的邊界，引領你在山與海的節奏中，找回那份隨心所欲、悠然自得的「游」意。
-2d5074bc5eea63e199fbdaac019f741c1051335d
+                        這不僅是一個名字，更是一種生活哲學。我們致力於為每一位嚮往自由的靈魂，打造最純粹的戶外生活體驗。無論是隱匿於深林峽谷間的靜謐棲息，或是奔向湛藍海灣的浪潮探索，我們要做的事，就是打破日常的邊界，引領你在山與海的節奏中，找回那份隨心所欲、悠然自得的「游」意。
                     </p>
                 </div>
             </div>
@@ -82,7 +80,7 @@ HEAD
                 <span class="tag" style="margin-top: 0 !important;">ABURA WANDER</span>
                 <h2 class="section-title">游山丸水</h2>
                 <p class="section-desc">始於 2022，我們將四季遞嬗化作空間的呼吸。<br>在此刻的靜謐時光中，誠摯邀請您慢下腳步<br>，與游山丸水續寫未完的旅行故事。</p>
-                <a href="/wander/" style="text-decoration:none; padding-bottom:6px; font-size:0.85rem;">探索更多</a>
+                <a href="wander.html" style="text-decoration:none; padding-bottom:6px; font-size:0.85rem;">探索更多</a>
             </div>
         </section>
         
@@ -94,16 +92,16 @@ HEAD
                         <span class="tag">ABURA GULU</span>
                         <h2 class="section-title">游山谷露</h2>
                         <p class="section-desc">2026 夏秋之際，游山谷露將在靜謐山谷中緩緩啟程。<br>我們將自然的脈動融入建築，為您備好一席遠離喧囂的棲息之所。<br>在此慢下腳步，與我們一同續寫關於山林旅行的全新故事。</p>
-                        <a href="/gulu/" style="text-decoration:none; padding-bottom:6px;">探索更多</a>
+                        <a href="gulu.html" style="text-decoration:none; padding-bottom:6px;">探索更多</a>
                     </div>
                 </div>
                 <div>
-                    <img src="photo/東澳1.webp" loading="lazy" style="width:100%; height:600px; object-fit:cover;">
+                    <img src="photo/東澳1.webp"loading="lazy"  style="width:100%; height:600px; object-fit:cover;">
                     <div class="item-info">
                         <span class="tag">ABURA HIONE</span>
                         <h2 class="section-title">游山海灣</h2>
                         <p class="section-desc">2027 蔚藍啟航，游山海灣將向著蔚藍海濱正式出發。<br>我們將海浪的律動融入建築，為您備好一席聽海觀潮的棲息之所，<br>期待與您在海天一色中浪漫相遇。</p>
-                        <a href="/hione/" style="text-decoration:none; padding-bottom:6px;">探索更多</a>
+                        <a href="hione.html" style="text-decoration:none; padding-bottom:6px;">探索更多</a>
                     </div>
                 </div>
             </div>
@@ -118,23 +116,25 @@ HEAD
             <div class="grid-inner-wrapper">
                 <div class="photo-column">
                     <div class="aspect-box">
-                        <img src="photo/首頁人才招募.webp" loading="lazy" alt="宜蘭人才招募">
-                        <a href="/hiring/" class="embedded-white-btn">商業合作</a>
+                        <img src="photo/首頁人才招募.webp"loading="lazy" loading="lazy" alt="宜蘭人才招募">
+                        <a href="hiring.html" class="embedded-white-btn">商業合作</a>
                     </div>
                 </div>
                 <div class="photo-column">
                     <div class="aspect-box">
-                        <img src="photo/商業合作.webp" loading="lazy" alt="宜蘭合作">
-                        <a href="/hiring/" class="embedded-white-btn">人才 | 品牌孵化</a>
+                        <img src="photo/商業合作.webp" loading="lazy"loading="lazy" alt="宜蘭合作">
+                        <a href="hiring.html" class="embedded-white-btn">人才 | 品牌孵化</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <div class="explore-more-container">
-            <a href="/hiring/" class="explore-btn-standard">探索更多</a>
+            <a href="hiring.html" class="explore-btn-standard">探索更多</a>
         </div>
     </main>
+
+    <body class="home-page"> 
 
     <footer class="main-footer">
         <div class="footer-center-content">
@@ -155,27 +155,28 @@ HEAD
                 <div class="footer-new-columns">
                     <div class="footer-column-item">
                         <h3 class="join-title">文旅度假</h3>
-                        <a href="/wander/" class="join-item">冬山 | WANDER</a>
-                        <a href="/hione/" class="join-item">東澳 | HIONE</a>
-                        <a href="/gulu/" class="join-item">南澳 | GULU</a>
+                        <a href="wander.html" class="join-item">冬山 | WANDER</a>
+                        <a href="hione.html" class="join-item">東澳 | HIONE</a>
+                        <a href="gulu.html" class="join-item">南澳 | GULU</a>
                     </div>
                     <div class="footer-column-item">
                         <h3 class="join-title">四季體驗</h3>
-                        <a href="/" class="join-item">商店</a>
+                        <a href="#" class="join-item">商店</a>
                     </div>
                     <div class="footer-column-item">
                         <h3 class="join-title">加入 ABURA</h3>
-                        <a href="/hiring/" class="join-item">人才招募</a>
-                        <a href="/hiring/" class="join-item">品牌孵化</a>
-                        <a href="/hiring/" class="join-item">商業合作</a>
+                        <a href="hiring.html" class="join-item">人才招募</a>
+                        <a href="hiring.html" class="join-item">品牌孵化</a>
+                        <a href="hiring.html" class="join-item">商業合作</a>
                     </div>
                 </div>
-            </div>
+        </div>
+        
             <div class="footer-copyright-wrap">
                 <div class="footer-copyright">
                     © 2026 ABURA GROUP S.A.R.L. 
                     <span class="footer-divider">|</span> 
-                    <a href="/legal/" class="footer-legal-link">隱私權與服務條款</a>
+                    <a href="legal.html" class="footer-legal-link">隱私權與服務條款</a>
                 </div>
             </div>
         </div>
@@ -183,3 +184,4 @@ HEAD
     <script src="script.js"></script>
 </body>
 </html>
+
