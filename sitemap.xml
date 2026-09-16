@@ -4,12 +4,15 @@
     <loc>https://abura-youshan.com/</loc>
   </url>
   <url>
-    <loc>https://abura-youshan.com/#wander</loc>
+    <loc>https://abura-youshan.com/wander</loc>
   </url>
   <url>
-    <loc>https://abura-youshan.com/#gulu</loc>
+    <loc>https://abura-youshan.com/rooms-list/</loc>
   </url>
   <url>
-    <loc>https://abura-youshan.com/#hione</loc>
+    <loc>https://abura-youshan.com/gulu</loc>
+  </url>
+  <url>
+    <loc>https://abura-youshan.com/hione</loc>
   </url>
 </urlset>
