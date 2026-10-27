@@ -170,3 +170,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// 預訂按鈕：滑鼠移上去（手機點一下）展開「線上訂房」與「LINE 客服」
+document.addEventListener('DOMContentLoaded', () => {
+    const BOOKING = 'https://booking.abura-youshan.com/booking';
+    // 各頁對應的館別與 LINE（沒列到的頁面：全部館別＋品牌 LINE）
+    const PAGES = {
+        '/wander/': { area: 1, line: '@413tqyhr' },
+        '/rooms-list/': { area: 1, line: '@413tqyhr' },
+        '/gulu/': { area: 2 },
+        '/hione/': { area: 3 },
+    };
+    const conf = PAGES[location.pathname] || {};
+    const bookUrl = BOOKING + (conf.area ? '?area=' + conf.area : '');
+    const lineUrl = 'https://line.me/R/ti/p/' + (conf.line || '@632kxjjw');
+
+    document.querySelectorAll('.btn-reserve').forEach((btn) => {
+        const box = btn.parentElement;
+        box.classList.add('reserve-dropdown');
+        btn.setAttribute('aria-haspopup', 'true');
+        btn.setAttribute('aria-expanded', 'false');
+        const menu = document.createElement('div');
+        menu.className = 'reserve-menu';
+        menu.innerHTML =
+            '<a href="' + bookUrl + '" target="_blank" rel="noopener"><i class="fa-regular fa-calendar-check"></i><span>線上訂房<small>即時查詢空房・線上預訂</small></span></a>' +
+            '<a href="' + lineUrl + '" target="_blank" rel="noopener" class="reserve-line"><i class="fa-brands fa-line"></i><span>LINE 客服<small>有問題直接問我們</small></span></a>';
+        box.appendChild(menu);
+        const setOpen = (on) => { box.classList.toggle('open', on); btn.setAttribute('aria-expanded', on ? 'true' : 'false'); };
+        // 按鈕本身不直接跳頁：電腦滑過就展開，手機點一下展開、再點收合
+        btn.addEventListener('click', (e) => { e.preventDefault(); setOpen(!box.classList.contains('open')); });
+        document.addEventListener('click', (e) => { if (!box.contains(e.target)) setOpen(false); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    });
+});

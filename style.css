@@ -538,3 +538,17 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
 }
 
 
+
+/* 預訂按鈕下拉選單：線上訂房／LINE 客服 */
+.reserve-dropdown { position: relative; }
+.reserve-menu { position: absolute; top: 100%; right: 0; padding-top: 10px; min-width: 230px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s, transform .2s, visibility .2s; z-index: 3100; }
+.reserve-dropdown:hover .reserve-menu, .reserve-dropdown:focus-within .reserve-menu, .reserve-dropdown.open .reserve-menu { opacity: 1; visibility: visible; transform: none; }
+.reserve-menu a { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #f6f5f0; color: #333; text-decoration: none; border: 1px solid #333; font-size: 0.85rem; letter-spacing: 2px; transition: background .2s, color .2s; }
+.reserve-menu a + a { border-top: 0; }
+.reserve-menu a:hover { background: #333; color: #f6f5f0; }
+.reserve-menu i { width: 18px; text-align: center; font-size: 1rem; }
+.reserve-menu .reserve-line i { color: #06c755; }
+.reserve-menu a:hover i { color: inherit; }
+.reserve-menu span { display: flex; flex-direction: column; line-height: 1.4; }
+.reserve-menu small { font-size: 0.7rem; letter-spacing: 1px; opacity: .65; }
+@media (max-width: 768px) { .reserve-menu { min-width: 210px; } .reserve-menu a { padding: 12px 14px; } }
