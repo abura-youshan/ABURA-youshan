@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>游山丸水｜宜蘭冬山包棟民宿・游山 ABURA</title>
     <meta name="description" content="走訪游山 ABURA 的 Wander 冬山據點，在宜蘭田園與山水之間尋找一方靜謐。結合極簡美學與自然風光，為您提供沉浸式的高端度假與私密住宿體驗。">
+    <link rel="icon" type="image/svg+xml" href="../photo/favicon.svg">
     <meta name="format-detection" content="telephone=no">
     <!-- 修正：往上一層找 CSS -->
     <link rel="stylesheet" href="../style.css">
@@ -55,7 +56,7 @@
         <ul class="menu-items">
             <li><a href="/">ABURA <small>HOME</small></a></li>
             <li>
-                <a href="javascript:void(0)" id="toggle-destinations">
+                <a href="#destinations" id="toggle-destinations" role="button" aria-expanded="false">
                     目的地 <small>DESTINATIONS</small> 
                     <i class="fa-solid fa-chevron-down submenu-icon"></i>
                 </a>
@@ -86,7 +87,7 @@
     </nav>
 
     <section style="width: 100%;">
-        <img src="../photo/游山.webp" style="width:100%; display:block;" alt="宜蘭住宿游山丸水 宜蘭冬山質感住宿游山丸水外觀與池畔美景">
+        <img src="../photo/游山.webp" srcset="../photo/m/游山.webp 1200w, ../photo/游山.webp 2200w" sizes="100vw" style="width:100%; display:block;" alt="宜蘭住宿游山丸水 宜蘭冬山質感住宿游山丸水外觀與池畔美景">
     </section>
 
     <article class="detail-content" style="background-color: #8d7b70; color: #f6f5f0; padding: 100px 20px;">
@@ -117,15 +118,15 @@
     <section style="padding: 10px 0 60px 0; background-color: #f6f5f0;">
         <div class="gallery-slider">
             <div id="galleryContainer" class="gallery-container">
-                <div class="gallery-item" data-title="201"><img src="../photo/游山201.webp" loading="lazy" alt="宜蘭游山丸水"></div>
-                <div class="gallery-item" data-title="202"><img src="../photo/游山202.webp" loading="lazy" alt="游山丸水雙人房"></div>
-                <div class="gallery-item" data-title="203"><img src="../photo/游山203.webp" loading="lazy" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="205"><img src="../photo/游山205.webp" loading="lazy" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="201"><img src="../photo/游山201.webp" srcset="../photo/m/游山201.webp 1200w, ../photo/游山201.webp 1593w" sizes="100vw" loading="lazy" alt="宜蘭游山丸水"></div>
+                <div class="gallery-item" data-title="202"><img src="../photo/游山202.webp" srcset="../photo/m/游山202.webp 1200w, ../photo/游山202.webp 2048w" sizes="100vw" loading="lazy" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="203"><img src="../photo/游山203.webp" srcset="../photo/m/游山203.webp 1200w, ../photo/游山203.webp 1650w" sizes="100vw" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="205"><img src="../photo/游山205.webp" srcset="../photo/m/游山205.webp 1200w, ../photo/游山205.webp 2200w" sizes="100vw" loading="lazy" alt="游山丸水雙人房"></div>
                 <div class="gallery-item" data-title="206"><img src="../photo/游山206.webp" loading="lazy" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="301"><img src="../photo/游山301.webp" loading="lazy" alt="游山丸水雙人房"></div>
-                <div class="gallery-item" data-title="302"><img src="../photo/游山302.webp" loading="lazy" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="303"><img src="../photo/游山303.webp" loading="lazy" alt="游山丸水四人房"></div>
-                <div class="gallery-item" data-title="丸水包棟客廳"><img src="../photo/丸水棟客廳.webp" loading="lazy" alt="游山丸水豪華客廳與包棟空間"></div>
+                <div class="gallery-item" data-title="301"><img src="../photo/游山301.webp" srcset="../photo/m/游山301.webp 1200w, ../photo/游山301.webp 1668w" sizes="100vw" loading="lazy" alt="游山丸水雙人房"></div>
+                <div class="gallery-item" data-title="302"><img src="../photo/游山302.webp" srcset="../photo/m/游山302.webp 1200w, ../photo/游山302.webp 1616w" sizes="100vw" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="303"><img src="../photo/游山303.webp" srcset="../photo/m/游山303.webp 1200w, ../photo/游山303.webp 1358w" sizes="100vw" loading="lazy" alt="游山丸水四人房"></div>
+                <div class="gallery-item" data-title="丸水包棟客廳"><img src="../photo/丸水棟客廳.webp" srcset="../photo/m/丸水棟客廳.webp 1200w, ../photo/丸水棟客廳.webp 2200w" sizes="100vw" loading="lazy" alt="游山丸水豪華客廳與包棟空間"></div>
             </div>
         </div>
         <div style="display: flex; justify-content: space-between; width: 80%; margin: 25px auto; align-items: center;">
@@ -148,13 +149,13 @@
             <p class="section-desc">中式九宮格與西式餐盤。</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
                 <div>
-                    <img src="../photo/早餐中式.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水民宿精緻中式清粥九宮格早餐">
+                    <img src="../photo/早餐中式.webp" srcset="../photo/m/早餐中式.webp 1200w, ../photo/早餐中式.webp 2200w" sizes="100vw" loading="lazy" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水民宿精緻中式清粥九宮格早餐">
                     <span class="tag">中式</span>
                     <h3 class="section-title" style="font-size: 1.8rem;">清粥九宮格</h3>
                     <p class="section-desc">精選在地食材製作的九道精緻小菜，搭配溫潤清粥，開啟充滿活力的早晨。</p>
                 </div>
                 <div>
-                    <img src="../photo/早餐西式.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水民宿西式雞腿排精緻餐盤早餐">
+                    <img src="../photo/早餐西式.webp" srcset="../photo/m/早餐西式.webp 1200w, ../photo/早餐西式.webp 2200w" sizes="100vw" loading="lazy" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 25px;" alt="游山丸水民宿西式雞腿排精緻餐盤早餐">
                     <span class="tag">西式</span>
                     <h3 class="section-title" style="font-size: 1.8rem;">雞腿排餐盤</h3>
                     <p class="section-desc">鮮嫩多汁的煎烤雞腿排，搭配新鮮沙拉與手作麵包，提供豐富的營養與美味。</p>
@@ -170,13 +171,13 @@
             <p class="section-desc">游泳池、戲水池、划船</p>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 60px;">
                 <div>
-                    <img src="../photo/戲水池.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游山丸水戶外游泳池與戲水池設施">
+                    <img src="../photo/戲水池.webp" srcset="../photo/m/戲水池.webp 1200w, ../photo/戲水池.webp 1650w" sizes="100vw" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游山丸水戶外游泳池與戲水池設施">
                     <span class="tag">戶外設施</span>
                     <h3 class="section-title" style="font-size: 1.6rem;">游泳池 | 戲水池</h3>
                     <p class="section-desc">在波光粼粼中暢游，享受大自然與天然湧泉水的完美結合。</p>
                 </div>
                 <div>
-                    <img src="../photo/關於我們3.webp" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游山丸水愛心島草皮與親子遊樂設施">
+                    <img src="../photo/關於我們3.webp" srcset="../photo/m/關於我們3.webp 1200w, ../photo/關於我們3.webp 2200w" sizes="100vw" loading="lazy" style="width: 100%; aspect-ratio: 1/1.3; object-fit: cover; margin-bottom: 25px;" alt="游山丸水愛心島草皮與親子遊樂設施">
                     <span class="tag">戶外設施</span>
                     <h3 class="section-title" style="font-size: 1.6rem;">愛心島遊樂設施</h3>
                     <p class="section-desc">島上設有蹺蹺板與盪鞦韆，綠意草皮與親友共度時光。</p>
@@ -196,7 +197,7 @@
             <span class="tag">須知</span>
             <h2 class="section-title">入住須知</h2>
             <p class="section-desc">入住時間為下午 3:00，退房時間為上午 11:00。全館禁菸並謝絕寵物入住。</p>
-            <img src="../photo/須知.webp" loading="lazy" style="width: 80%; height: auto; display: block; margin: 80px 0;" alt="游山丸水入住須知與規範說明">
+            <img src="../photo/須知.webp" srcset="../photo/m/須知.webp 1200w, ../photo/須知.webp 1920w" sizes="100vw" loading="lazy" style="width: 80%; height: auto; display: block; margin: 80px 0;" alt="游山丸水入住須知與規範說明">
             
             <div id="map-section" style="width: 100%;">
                 <span class="tag">GOOGLE MAP</span>
@@ -213,15 +214,15 @@
                 游山丸水 <span class="footer-logo-en">WANDER</span>
             </div>
             <div class="footer-social">
-                <a href="https://line.me/R/ti/p/@413tqyhr" target="_blank" title="LINE" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                <a href="https://line.me/R/ti/p/@413tqyhr" target="_blank" title="LINE" style="cursor: pointer; display: inline-block; margin: 0 10px;" aria-label="LINE">
                     <i class="fa-brands fa-line"></i>
                 </a>
     
-                <a href="https://www.instagram.com/yo.wander_/" target="_blank" title="Instagram" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                <a href="https://www.instagram.com/yo.wander_/" target="_blank" title="Instagram" style="cursor: pointer; display: inline-block; margin: 0 10px;" aria-label="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
     
-                <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank" title="Facebook" style="cursor: pointer; display: inline-block; margin: 0 10px;">
+                <a href="https://www.facebook.com/p/%E6%B8%B8%E5%B1%B1%E4%B8%B8%E6%B0%B4-100083221699827/" target="_blank" title="Facebook" style="cursor: pointer; display: inline-block; margin: 0 10px;" aria-label="Facebook">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
             </div> 

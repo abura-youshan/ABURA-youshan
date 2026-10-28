@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleDest.onclick = (e) => {
             e.preventDefault();
             destSubmenu.classList.toggle('active');
+            toggleDest.setAttribute('aria-expanded', destSubmenu.classList.contains('active'));
             const icon = toggleDest.querySelector('.submenu-icon');
             if (icon) {
                 icon.style.transform = destSubmenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
