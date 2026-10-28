@@ -195,7 +195,7 @@ body.menu-open {overflow: hidden;height: 100%;}
 }
 
 /* 文旅度假 區塊樣式 */
-.culture-retreat-section { background-color: #f5f4f0; padding: 0; text-align: center; }
+.culture-retreat-section { background-color: #f5f4f0; padding: 0; text-align: center; overflow-x: clip; }
 .line-container { width: 80%; margin: 0 auto; }
 .full-line { border: 0; border-top: 1px solid #a89a8e; margin: 0; }
 .text-container { margin-top: 45px; margin-bottom: 45px; }
