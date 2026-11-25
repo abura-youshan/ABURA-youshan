@@ -553,3 +553,116 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
 .reserve-menu span { display: flex; flex-direction: column; line-height: 1.4; }
 .reserve-menu small { font-size: 0.7rem; letter-spacing: 1px; opacity: .65; }
 @media (max-width: 768px) { .reserve-menu { min-width: 210px; } .reserve-menu a { padding: 12px 14px; } }
+
+/* ===== 游山谷露：滿版照片分段版型 ===== */
+.gl-panel { position: relative; height: calc(100vh - 130px); min-height: 520px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: #f6f5f0; scroll-margin-top: 130px; }
+.gl-hero { height: calc(100vh - 130px); }
+.gl-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.gl-panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,24,20,.15) 0%, rgba(20,24,20,.45) 100%); z-index: 1; }
+.gl-cap { position: relative; z-index: 2; padding: 0 24px; max-width: 760px; }
+.gl-en { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; letter-spacing: .12em; opacity: .9; margin-bottom: 10px; }
+.gl-zh { font-family: 'Noto Serif TC', serif; font-weight: 300; font-size: 2.4rem; letter-spacing: .3em; margin: 0 0 14px; padding-left: .3em; }
+.gl-big { font-size: 2.6rem; letter-spacing: .22em; }
+.gl-big span { display: inline-block; }
+.gl-txt { font-family: 'Noto Serif TC', serif; font-weight: 300; font-size: 1.02rem; line-height: 1.9; letter-spacing: .08em; margin: 0; }
+.gl-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.gl-btn { display: inline-block; padding: 12px 34px; border: 1px solid #f6f5f0; background: #f6f5f0; color: #3d3a36; text-decoration: none; letter-spacing: .2em; font-size: .95rem; transition: .25s; }
+.gl-btn:hover { background: transparent; color: #f6f5f0; }
+.gl-ghost { background: transparent; color: #f6f5f0; }
+.gl-ghost:hover { background: #f6f5f0; color: #3d3a36; }
+.gl-intro { background: #5d6d5d; color: #f6f5f0; text-align: center; padding: 100px 24px; scroll-margin-top: 130px; }
+.gl-intro-tag { font-family: 'Noto Serif TC', serif; opacity: .8; letter-spacing: .2em; }
+.gl-intro-title { font-family: 'Noto Serif TC', serif; font-weight: 300; font-size: 2.6rem; letter-spacing: .4em; margin: 20px 0 10px; padding-left: .4em; }
+.gl-intro-en { font-family: 'Playfair Display', serif; letter-spacing: .8rem; opacity: .8; margin-bottom: 30px; }
+.gl-intro p { font-family: 'Noto Serif TC', serif; font-weight: 300; line-height: 2.2; letter-spacing: .08em; margin: 0 auto; max-width: 760px; }
+.gl-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #f6f5f0; }
+.gl-strip figure { margin: 0; position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.gl-strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+.gl-strip figure:hover img { transform: scale(1.04); }
+.gl-strip figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 16px; color: #f6f5f0; font-family: 'Noto Serif TC', serif; letter-spacing: .2em; text-align: center; background: linear-gradient(180deg, transparent, rgba(20,24,20,.55)); }
+.gl-facts { background: #f6f5f0; text-align: center; padding: 100px 24px; scroll-margin-top: 130px; }
+.gl-dark { color: #8d7b70; }
+.gl-facts-title { font-family: 'Noto Serif TC', serif; font-weight: 300; font-size: 2.2rem; letter-spacing: .3em; color: #2c2c2c; margin: 0 0 40px; padding-left: .3em; }
+.gl-facts-list { list-style: none; padding: 0; margin: 0 auto; max-width: 900px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e0ddd5; border: 1px solid #e0ddd5; }
+.gl-facts-list li { background: #f6f5f0; padding: 28px 12px; display: grid; gap: 6px; }
+.gl-facts-list strong { font-family: 'Noto Serif TC', serif; font-weight: 500; letter-spacing: .15em; color: #2c2c2c; }
+.gl-facts-list span { font-size: .85rem; color: #8d7b70; letter-spacing: .1em; }
+.gl-facts-note { margin: 30px auto 0; color: #6b6b6b; font-size: .9rem; line-height: 1.9; max-width: 900px; }
+@media (max-width: 768px) {
+  .gl-panel, .gl-hero { height: calc(100vh - 116px); min-height: 460px; scroll-margin-top: 116px; }
+  .gl-zh { font-size: 1.8rem; letter-spacing: .22em; }
+  .gl-big { font-size: 1.75rem; letter-spacing: .12em; }
+  .gl-txt { font-size: .95rem; }
+  .gl-intro { padding: 70px 20px; } .gl-intro-title { font-size: 2rem; }
+  .gl-strip { grid-template-columns: 1fr; }
+  .gl-strip figure { aspect-ratio: 4 / 3; }
+  .gl-facts { padding: 70px 20px; }
+  .gl-facts-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* 游山谷露分頁：圖文左右、目前分頁、下一頁 */
+.gl-subnav a.is-on { color: #2c2c2c; border-bottom: 1px solid #2c2c2c; padding-bottom: 3px; }
+.gl-short { height: 70vh; min-height: 440px; }
+.gl-split { display: grid; grid-template-columns: 1.3fr 1fr; background: #f6f5f0; min-height: 70vh; }
+.gl-split.gl-flip { grid-template-columns: 1fr 1.3fr; }
+.gl-split.gl-flip .gl-split-img { order: 2; }
+.gl-split-img { position: relative; overflow: hidden; min-height: 360px; }
+.gl-split-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gl-split-txt { display: flex; flex-direction: column; justify-content: center; padding: 60px 8%; }
+.gl-split-title { font-family: 'Noto Serif TC', serif; font-weight: 300; font-size: 2rem; letter-spacing: .25em; color: #2c2c2c; margin: 6px 0 24px; }
+.gl-split-txt p { font-family: 'Noto Serif TC', serif; font-weight: 300; line-height: 2; letter-spacing: .06em; color: #555; margin: 0 0 10px; }
+.gl-link { color: #5d6d5d; text-decoration: underline; text-underline-offset: 4px; }
+.gl-next { display: flex; justify-content: center; align-items: baseline; gap: 16px; padding: 40px 20px; background: #f6f5f0; font-family: 'Noto Serif TC', serif; }
+.gl-next span { color: #8d7b70; font-size: .85rem; letter-spacing: .2em; }
+.gl-next a { color: #2c2c2c; text-decoration: none; font-size: 1.3rem; letter-spacing: .2em; }
+.gl-next a:hover { text-decoration: underline; text-underline-offset: 6px; }
+@media (max-width: 768px) {
+  .gl-short { height: 60vh; min-height: 380px; }
+  .gl-split, .gl-split.gl-flip { grid-template-columns: 1fr; min-height: 0; }
+  .gl-split.gl-flip .gl-split-img { order: 0; }
+  .gl-split-img { min-height: 0; aspect-ratio: 4 / 3; }
+  .gl-split-txt { padding: 40px 24px 50px; }
+  .gl-split-title { font-size: 1.6rem; }
+  .gl-facts-list { grid-template-columns: 1fr; }
+}
+
+/* 游山谷露：寵物入住 */
+.gl-dark-btn { background: #5d6d5d; border-color: #5d6d5d; color: #f6f5f0; }
+.gl-dark-btn:hover { background: transparent; color: #5d6d5d; }
+.gl-line-btn { background: transparent; border-color: #5d6d5d; color: #5d6d5d; }
+.gl-line-btn:hover { background: #5d6d5d; color: #f6f5f0; }
+.gl-petband { background: #ece9e1; text-align: center; padding: 80px 24px; }
+.gl-petband p { font-family: 'Noto Serif TC', serif; color: #555; letter-spacing: .06em; margin: -20px 0 28px; }
+.gl-pethead { background: #f6f5f0; padding: 120px 24px 40px; text-align: center; }
+.gl-pet-title { font-family: 'Noto Serif TC', serif; font-weight: 300; font-size: 2.4rem; letter-spacing: .25em; color: #2c2c2c; margin: 8px 0 18px; }
+.gl-pethead p { color: #666; line-height: 1.9; margin: 0 auto; max-width: 640px; }
+.gl-petcards { background: #f6f5f0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 20px 8% 70px; }
+.gl-petcard { background: #fff; border: 1px solid #e0ddd5; padding: 26px 22px; display: flex; flex-direction: column; gap: 10px; }
+.gl-petcard-on { background: #e6ebe4; border-color: #c9d1c3; }
+.gl-petcard-k { color: #8d7b70; font-size: .85rem; letter-spacing: .12em; }
+.gl-petcard strong { font-family: 'Noto Serif TC', serif; font-weight: 500; font-size: 1.35rem; color: #2c2c2c; letter-spacing: .05em; }
+.gl-petcard strong small { font-size: .85rem; color: #6b6b6b; font-weight: 400; }
+.gl-petcard p { margin: 0; color: #555; line-height: 1.8; font-size: .92rem; }
+.gl-petrules { background: #f6f5f0; padding: 30px 8% 60px; }
+.gl-pet-h2 { font-family: 'Noto Serif TC', serif; font-weight: 400; font-size: 1.6rem; letter-spacing: .12em; color: #2c2c2c; margin: 0 0 24px; padding-bottom: 16px; border-bottom: 1px solid #e0ddd5; }
+.gl-petcols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.gl-petcols h3 { font-family: 'Noto Serif TC', serif; font-weight: 500; font-size: 1.1rem; margin: 0 0 8px; letter-spacing: .1em; }
+.gl-ok { color: #5d6d5d; } .gl-no { color: #a4523f; }
+.gl-petcols dl { margin: 0; }
+.gl-petcols dt { font-weight: 600; color: #2c2c2c; padding-top: 16px; border-top: 1px solid #e0ddd5; margin-top: 16px; letter-spacing: .05em; }
+.gl-petcols dd { margin: 6px 0 0; color: #666; line-height: 1.8; font-size: .95rem; }
+.gl-petsub p { color: #555; line-height: 1.9; margin: 0 0 10px; }
+.gl-petdetail { margin-top: 24px; border-top: 1px solid #e0ddd5; border-bottom: 1px solid #e0ddd5; padding: 16px 0; }
+.gl-petdetail summary { cursor: pointer; font-weight: 600; letter-spacing: .08em; }
+.gl-petdetail p { margin: 12px 0 0; }
+.gl-petcta { background: #f6f5f0; padding: 30px 8% 70px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border-top: 1px solid #e0ddd5; }
+.gl-petcta .gl-pet-h2 { border: 0; padding: 0; margin: 0 0 8px; }
+.gl-petcta p { margin: 0; color: #666; }
+.gl-petcta .gl-btns { margin-top: 0; }
+@media (max-width: 1024px) { .gl-petcards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .gl-pethead { padding: 90px 20px 24px; } .gl-pet-title { font-size: 1.8rem; }
+  .gl-petcards { grid-template-columns: 1fr; padding: 10px 20px 50px; }
+  .gl-petrules, .gl-petcta { padding-left: 20px; padding-right: 20px; }
+  .gl-petcols { grid-template-columns: 1fr; gap: 10px; }
+}
