@@ -668,3 +668,10 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
   .gl-petrules, .gl-petcta { padding-left: 20px; padding-right: 20px; }
   .gl-petcols { grid-template-columns: 1fr; gap: 10px; }
 }
+
+/* 園區設施：園區地圖 */
+.gl-map { margin: 90px auto 0; max-width: 1100px; scroll-margin-top: 130px; }
+.gl-map a { display: block; }
+.gl-map img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 10px 30px rgba(30, 36, 30, .12); }
+.gl-map-hint { margin: 14px 0 0; font-size: .85rem; letter-spacing: .1em; color: #8a857b; }
+@media (max-width: 768px) { .gl-map { margin-top: 60px; } }
