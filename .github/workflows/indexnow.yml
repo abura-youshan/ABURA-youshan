@@ -1,0 +1,19 @@
+# 官網推上 main 之後，等 GitHub Pages 更新完，把 sitemap 裡的網址通知 Bing 等搜尋引擎（IndexNow）
+name: IndexNow
+on:
+  push:
+    branches: [main]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 等網站更新完成
+        run: sleep 120
+      - name: 送出網址
+        run: |
+          KEY=00b08d4d15fe1dddaecff12683f9482f
+          URLS=$(curl -fsSL https://abura-youshan.com/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | jq -R . | jq -sc .)
+          echo "$URLS"
+          curl -sS -w '\nHTTP %{http_code}\n' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"abura-youshan.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://abura-youshan.com/$KEY.txt\",\"urlList\":$URLS}"
