@@ -2,29 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://abura-youshan.com/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://abura-youshan.com/wander/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://abura-youshan.com/rooms-list/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://abura-youshan.com/gulu/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://abura-youshan.com/hione/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://abura-youshan.com/about/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://abura-youshan.com/hiring/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
-  <url><loc>https://abura-youshan.com/gulu/campervan/</loc></url>
-  <url><loc>https://abura-youshan.com/gulu/meals/</loc></url>
-  <url><loc>https://abura-youshan.com/gulu/experience/</loc></url>
-  <url><loc>https://abura-youshan.com/gulu/facilities/</loc></url>
-  <url><loc>https://abura-youshan.com/gulu/pet/</loc></url>
-  <url><loc>https://abura-youshan.com/gulu/bihou/</loc></url>
+  <url><loc>https://abura-youshan.com/gulu/campervan/</loc>
+    <lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://abura-youshan.com/gulu/meals/</loc>
+    <lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://abura-youshan.com/gulu/experience/</loc>
+    <lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://abura-youshan.com/gulu/facilities/</loc>
+    <lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://abura-youshan.com/gulu/pet/</loc>
+    <lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://abura-youshan.com/gulu/bihou/</loc>
+    <lastmod>2026-11-26</lastmod></url>
 </urlset>
