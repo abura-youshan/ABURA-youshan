@@ -689,3 +689,8 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
 
 /* 碧候周邊：補充說明 */
 .gl-split-txt .gl-note { margin-top: 14px; padding: 12px 16px; border-left: 3px solid #b9a58f; background: #f6f2ec; color: #6b5e51; font-size: .9rem; line-height: 1.9; }
+
+/* 文中連結（例：南澳總覽頁的「碧候山谷」） */
+.gl-inline { color: inherit; text-decoration: underline; text-decoration-color: rgba(120, 110, 95, .45); text-underline-offset: 4px; }
+.gl-inline:hover { text-decoration-color: currentColor; }
+.gl-intro-loc .gl-inline { text-decoration-color: rgba(255, 255, 255, .55); }
