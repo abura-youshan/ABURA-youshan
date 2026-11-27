@@ -686,3 +686,6 @@ a[href^="tel"] { color: inherit !important; text-decoration: none !important; fo
 .gl-faq-item[open] summary::after { content: '−'; }
 .gl-faq-item p { margin: 0 4px 24px; color: #5e635c; line-height: 2; letter-spacing: .05em; font-size: .95rem; }
 @media (max-width: 768px) { .gl-faq { padding: 70px 20px; } .gl-faq-item summary { font-size: .98rem; } }
+
+/* 碧候周邊：補充說明 */
+.gl-split-txt .gl-note { margin-top: 14px; padding: 12px 16px; border-left: 3px solid #b9a58f; background: #f6f2ec; color: #6b5e51; font-size: .9rem; line-height: 1.9; }
